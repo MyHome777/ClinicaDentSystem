@@ -218,5 +218,10 @@ namespace ClinicaDentSystem
         {
             CargarVista(new UC_Inicio());
         }
+
+        private void guna2Panel2_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

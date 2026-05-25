@@ -79,20 +79,20 @@
             label1 = new Label();
             guna2ImageRadioButton11 = new Guna.UI2.WinForms.Guna2ImageRadioButton();
             guna2ImageRadioButton10 = new Guna.UI2.WinForms.Guna2ImageRadioButton();
-            guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
+            btnAuditorias = new Guna.UI2.WinForms.Guna2Button();
+            btnHistorial = new Guna.UI2.WinForms.Guna2Button();
             label4 = new Label();
             guna2ImageRadioButton8 = new Guna.UI2.WinForms.Guna2ImageRadioButton();
             guna2ImageRadioButton7 = new Guna.UI2.WinForms.Guna2ImageRadioButton();
             guna2ImageRadioButton6 = new Guna.UI2.WinForms.Guna2ImageRadioButton();
             guna2ImageRadioButton5 = new Guna.UI2.WinForms.Guna2ImageRadioButton();
             guna2ImageRadioButton4 = new Guna.UI2.WinForms.Guna2ImageRadioButton();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            btnInicio = new Guna.UI2.WinForms.Guna2Button();
+            btnInvenServi = new Guna.UI2.WinForms.Guna2Button();
+            btnDentista = new Guna.UI2.WinForms.Guna2Button();
+            btnFacturacion = new Guna.UI2.WinForms.Guna2Button();
+            btnCitas = new Guna.UI2.WinForms.Guna2Button();
+            btnPacientes = new Guna.UI2.WinForms.Guna2Button();
             guna2ImageRadioButton1 = new Guna.UI2.WinForms.Guna2ImageRadioButton();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel1.SuspendLayout();
@@ -129,20 +129,20 @@
             guna2Panel2.Controls.Add(label1);
             guna2Panel2.Controls.Add(guna2ImageRadioButton11);
             guna2Panel2.Controls.Add(guna2ImageRadioButton10);
-            guna2Panel2.Controls.Add(guna2Button8);
-            guna2Panel2.Controls.Add(guna2Button7);
+            guna2Panel2.Controls.Add(btnAuditorias);
+            guna2Panel2.Controls.Add(btnHistorial);
             guna2Panel2.Controls.Add(label4);
             guna2Panel2.Controls.Add(guna2ImageRadioButton8);
             guna2Panel2.Controls.Add(guna2ImageRadioButton7);
             guna2Panel2.Controls.Add(guna2ImageRadioButton6);
             guna2Panel2.Controls.Add(guna2ImageRadioButton5);
             guna2Panel2.Controls.Add(guna2ImageRadioButton4);
-            guna2Panel2.Controls.Add(guna2Button1);
-            guna2Panel2.Controls.Add(guna2Button5);
-            guna2Panel2.Controls.Add(guna2Button4);
-            guna2Panel2.Controls.Add(guna2Button6);
-            guna2Panel2.Controls.Add(guna2Button3);
-            guna2Panel2.Controls.Add(guna2Button2);
+            guna2Panel2.Controls.Add(btnInicio);
+            guna2Panel2.Controls.Add(btnInvenServi);
+            guna2Panel2.Controls.Add(btnDentista);
+            guna2Panel2.Controls.Add(btnFacturacion);
+            guna2Panel2.Controls.Add(btnCitas);
+            guna2Panel2.Controls.Add(btnPacientes);
             guna2Panel2.Controls.Add(guna2ImageRadioButton1);
             guna2Panel2.CustomizableEdges = customizableEdges28;
             guna2Panel2.Location = new Point(0, 0);
@@ -150,6 +150,7 @@
             guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges29;
             guna2Panel2.Size = new Size(235, 743);
             guna2Panel2.TabIndex = 0;
+            guna2Panel2.Paint += guna2Panel2_Paint_1;
             // 
             // guna2Separator5
             // 
@@ -315,47 +316,47 @@
             guna2ImageRadioButton10.TabIndex = 76;
             guna2ImageRadioButton10.UseTransparentBackground = true;
             // 
-            // guna2Button8
+            // btnAuditorias
             // 
-            guna2Button8.BackgroundImage = (Image)resources.GetObject("guna2Button8.BackgroundImage");
-            guna2Button8.BorderRadius = 8;
-            guna2Button8.Cursor = Cursors.Hand;
-            guna2Button8.CustomizableEdges = customizableEdges6;
-            guna2Button8.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button8.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button8.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button8.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button8.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button8.ForeColor = Color.White;
-            guna2Button8.ImageAlign = HorizontalAlignment.Right;
-            guna2Button8.Location = new Point(27, 691);
-            guna2Button8.Name = "guna2Button8";
-            guna2Button8.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            guna2Button8.Size = new Size(180, 45);
-            guna2Button8.TabIndex = 75;
-            guna2Button8.Text = "          AUDITORIÍAS";
-            guna2Button8.Click += guna2Button8_Click_1;
+            btnAuditorias.BackgroundImage = (Image)resources.GetObject("btnAuditorias.BackgroundImage");
+            btnAuditorias.BorderRadius = 8;
+            btnAuditorias.Cursor = Cursors.Hand;
+            btnAuditorias.CustomizableEdges = customizableEdges6;
+            btnAuditorias.DisabledState.BorderColor = Color.DarkGray;
+            btnAuditorias.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAuditorias.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAuditorias.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAuditorias.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAuditorias.ForeColor = Color.White;
+            btnAuditorias.ImageAlign = HorizontalAlignment.Right;
+            btnAuditorias.Location = new Point(27, 691);
+            btnAuditorias.Name = "btnAuditorias";
+            btnAuditorias.ShadowDecoration.CustomizableEdges = customizableEdges7;
+            btnAuditorias.Size = new Size(180, 45);
+            btnAuditorias.TabIndex = 75;
+            btnAuditorias.Text = "          AUDITORIÍAS";
+            btnAuditorias.Click += guna2Button8_Click_1;
             // 
-            // guna2Button7
+            // btnHistorial
             // 
-            guna2Button7.BackgroundImage = (Image)resources.GetObject("guna2Button7.BackgroundImage");
-            guna2Button7.BorderRadius = 8;
-            guna2Button7.Cursor = Cursors.Hand;
-            guna2Button7.CustomizableEdges = customizableEdges8;
-            guna2Button7.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button7.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button7.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button7.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button7.ForeColor = Color.White;
-            guna2Button7.ImageAlign = HorizontalAlignment.Right;
-            guna2Button7.Location = new Point(27, 640);
-            guna2Button7.Name = "guna2Button7";
-            guna2Button7.ShadowDecoration.CustomizableEdges = customizableEdges9;
-            guna2Button7.Size = new Size(180, 45);
-            guna2Button7.TabIndex = 74;
-            guna2Button7.Text = "          HISTORIAL";
-            guna2Button7.Click += guna2Button7_Click_1;
+            btnHistorial.BackgroundImage = (Image)resources.GetObject("btnHistorial.BackgroundImage");
+            btnHistorial.BorderRadius = 8;
+            btnHistorial.Cursor = Cursors.Hand;
+            btnHistorial.CustomizableEdges = customizableEdges8;
+            btnHistorial.DisabledState.BorderColor = Color.DarkGray;
+            btnHistorial.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnHistorial.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnHistorial.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnHistorial.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHistorial.ForeColor = Color.White;
+            btnHistorial.ImageAlign = HorizontalAlignment.Right;
+            btnHistorial.Location = new Point(27, 640);
+            btnHistorial.Name = "btnHistorial";
+            btnHistorial.ShadowDecoration.CustomizableEdges = customizableEdges9;
+            btnHistorial.Size = new Size(180, 45);
+            btnHistorial.TabIndex = 74;
+            btnHistorial.Text = "          HISTORIAL";
+            btnHistorial.Click += guna2Button7_Click_1;
             // 
             // label4
             // 
@@ -442,131 +443,131 @@
             guna2ImageRadioButton4.TabIndex = 62;
             guna2ImageRadioButton4.UseTransparentBackground = true;
             // 
-            // guna2Button1
+            // btnInicio
             // 
-            guna2Button1.BackgroundImage = (Image)resources.GetObject("guna2Button1.BackgroundImage");
-            guna2Button1.BorderRadius = 8;
-            guna2Button1.Cursor = Cursors.Hand;
-            guna2Button1.CustomizableEdges = customizableEdges15;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button1.ForeColor = Color.White;
-            guna2Button1.ImageAlign = HorizontalAlignment.Right;
-            guna2Button1.Location = new Point(27, 213);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            guna2Button1.Size = new Size(180, 45);
-            guna2Button1.TabIndex = 57;
-            guna2Button1.Text = "          INICIO";
-            guna2Button1.Click += guna2Button1_Click_1;
+            btnInicio.BackgroundImage = (Image)resources.GetObject("btnInicio.BackgroundImage");
+            btnInicio.BorderRadius = 8;
+            btnInicio.Cursor = Cursors.Hand;
+            btnInicio.CustomizableEdges = customizableEdges15;
+            btnInicio.DisabledState.BorderColor = Color.DarkGray;
+            btnInicio.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnInicio.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnInicio.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnInicio.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnInicio.ForeColor = Color.White;
+            btnInicio.ImageAlign = HorizontalAlignment.Right;
+            btnInicio.Location = new Point(27, 213);
+            btnInicio.Name = "btnInicio";
+            btnInicio.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            btnInicio.Size = new Size(180, 45);
+            btnInicio.TabIndex = 57;
+            btnInicio.Text = "          INICIO";
+            btnInicio.Click += guna2Button1_Click_1;
             // 
-            // guna2Button5
+            // btnInvenServi
             // 
-            guna2Button5.BackgroundImage = (Image)resources.GetObject("guna2Button5.BackgroundImage");
-            guna2Button5.BorderRadius = 8;
-            guna2Button5.Cursor = Cursors.Hand;
-            guna2Button5.CustomizableEdges = customizableEdges17;
-            guna2Button5.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button5.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button5.ForeColor = Color.White;
-            guna2Button5.ImageAlign = HorizontalAlignment.Right;
-            guna2Button5.Location = new Point(27, 504);
-            guna2Button5.Name = "guna2Button5";
-            guna2Button5.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            guna2Button5.Size = new Size(180, 45);
-            guna2Button5.TabIndex = 65;
-            guna2Button5.Text = "            INVENTARIO              Y  SERVICIOS";
-            guna2Button5.Click += guna2Button5_Click_1;
+            btnInvenServi.BackgroundImage = (Image)resources.GetObject("btnInvenServi.BackgroundImage");
+            btnInvenServi.BorderRadius = 8;
+            btnInvenServi.Cursor = Cursors.Hand;
+            btnInvenServi.CustomizableEdges = customizableEdges17;
+            btnInvenServi.DisabledState.BorderColor = Color.DarkGray;
+            btnInvenServi.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnInvenServi.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnInvenServi.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnInvenServi.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnInvenServi.ForeColor = Color.White;
+            btnInvenServi.ImageAlign = HorizontalAlignment.Right;
+            btnInvenServi.Location = new Point(27, 504);
+            btnInvenServi.Name = "btnInvenServi";
+            btnInvenServi.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            btnInvenServi.Size = new Size(180, 45);
+            btnInvenServi.TabIndex = 65;
+            btnInvenServi.Text = "            INVENTARIO              Y  SERVICIOS";
+            btnInvenServi.Click += guna2Button5_Click_1;
             // 
-            // guna2Button4
+            // btnDentista
             // 
-            guna2Button4.BackgroundImage = (Image)resources.GetObject("guna2Button4.BackgroundImage");
-            guna2Button4.BorderRadius = 8;
-            guna2Button4.Cursor = Cursors.Hand;
-            guna2Button4.CustomizableEdges = customizableEdges19;
-            guna2Button4.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button4.ForeColor = Color.White;
-            guna2Button4.ImageAlign = HorizontalAlignment.Right;
-            guna2Button4.Location = new Point(27, 419);
-            guna2Button4.Name = "guna2Button4";
-            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            guna2Button4.Size = new Size(180, 45);
-            guna2Button4.TabIndex = 64;
-            guna2Button4.Text = "          DENTISTAS";
-            guna2Button4.Click += guna2Button4_Click_1;
+            btnDentista.BackgroundImage = (Image)resources.GetObject("btnDentista.BackgroundImage");
+            btnDentista.BorderRadius = 8;
+            btnDentista.Cursor = Cursors.Hand;
+            btnDentista.CustomizableEdges = customizableEdges19;
+            btnDentista.DisabledState.BorderColor = Color.DarkGray;
+            btnDentista.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDentista.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDentista.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDentista.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDentista.ForeColor = Color.White;
+            btnDentista.ImageAlign = HorizontalAlignment.Right;
+            btnDentista.Location = new Point(27, 419);
+            btnDentista.Name = "btnDentista";
+            btnDentista.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            btnDentista.Size = new Size(180, 45);
+            btnDentista.TabIndex = 64;
+            btnDentista.Text = "          DENTISTAS";
+            btnDentista.Click += guna2Button4_Click_1;
             // 
-            // guna2Button6
+            // btnFacturacion
             // 
-            guna2Button6.BackgroundImage = (Image)resources.GetObject("guna2Button6.BackgroundImage");
-            guna2Button6.BorderRadius = 8;
-            guna2Button6.Cursor = Cursors.Hand;
-            guna2Button6.CustomizableEdges = customizableEdges21;
-            guna2Button6.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button6.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button6.ForeColor = Color.White;
-            guna2Button6.ImageAlign = HorizontalAlignment.Right;
-            guna2Button6.Location = new Point(27, 555);
-            guna2Button6.Name = "guna2Button6";
-            guna2Button6.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            guna2Button6.Size = new Size(180, 45);
-            guna2Button6.TabIndex = 66;
-            guna2Button6.Text = "          FACTURACIÓN";
-            guna2Button6.Click += guna2Button6_Click_1;
+            btnFacturacion.BackgroundImage = (Image)resources.GetObject("btnFacturacion.BackgroundImage");
+            btnFacturacion.BorderRadius = 8;
+            btnFacturacion.Cursor = Cursors.Hand;
+            btnFacturacion.CustomizableEdges = customizableEdges21;
+            btnFacturacion.DisabledState.BorderColor = Color.DarkGray;
+            btnFacturacion.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnFacturacion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnFacturacion.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnFacturacion.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnFacturacion.ForeColor = Color.White;
+            btnFacturacion.ImageAlign = HorizontalAlignment.Right;
+            btnFacturacion.Location = new Point(27, 555);
+            btnFacturacion.Name = "btnFacturacion";
+            btnFacturacion.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            btnFacturacion.Size = new Size(180, 45);
+            btnFacturacion.TabIndex = 66;
+            btnFacturacion.Text = "          FACTURACIÓN";
+            btnFacturacion.Click += guna2Button6_Click_1;
             // 
-            // guna2Button3
+            // btnCitas
             // 
-            guna2Button3.BackgroundImage = (Image)resources.GetObject("guna2Button3.BackgroundImage");
-            guna2Button3.BorderRadius = 8;
-            guna2Button3.Cursor = Cursors.Hand;
-            guna2Button3.CustomizableEdges = customizableEdges23;
-            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button3.ForeColor = Color.White;
-            guna2Button3.ImageAlign = HorizontalAlignment.Right;
-            guna2Button3.Location = new Point(27, 359);
-            guna2Button3.Name = "guna2Button3";
-            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            guna2Button3.Size = new Size(180, 45);
-            guna2Button3.TabIndex = 59;
-            guna2Button3.Text = "          CITAS";
-            guna2Button3.Click += guna2Button3_Click_2;
+            btnCitas.BackgroundImage = (Image)resources.GetObject("btnCitas.BackgroundImage");
+            btnCitas.BorderRadius = 8;
+            btnCitas.Cursor = Cursors.Hand;
+            btnCitas.CustomizableEdges = customizableEdges23;
+            btnCitas.DisabledState.BorderColor = Color.DarkGray;
+            btnCitas.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnCitas.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnCitas.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnCitas.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCitas.ForeColor = Color.White;
+            btnCitas.ImageAlign = HorizontalAlignment.Right;
+            btnCitas.Location = new Point(27, 359);
+            btnCitas.Name = "btnCitas";
+            btnCitas.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            btnCitas.Size = new Size(180, 45);
+            btnCitas.TabIndex = 59;
+            btnCitas.Text = "          CITAS";
+            btnCitas.Click += guna2Button3_Click_2;
             // 
-            // guna2Button2
+            // btnPacientes
             // 
-            guna2Button2.BackgroundImage = (Image)resources.GetObject("guna2Button2.BackgroundImage");
-            guna2Button2.BorderRadius = 8;
-            guna2Button2.Cursor = Cursors.Hand;
-            guna2Button2.CustomizableEdges = customizableEdges25;
-            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button2.ForeColor = Color.White;
-            guna2Button2.ImageAlign = HorizontalAlignment.Right;
-            guna2Button2.Location = new Point(27, 298);
-            guna2Button2.Name = "guna2Button2";
-            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            guna2Button2.Size = new Size(180, 45);
-            guna2Button2.TabIndex = 58;
-            guna2Button2.Text = "           PACIENTES";
-            guna2Button2.Click += guna2Button2_Click_1;
+            btnPacientes.BackgroundImage = (Image)resources.GetObject("btnPacientes.BackgroundImage");
+            btnPacientes.BorderRadius = 8;
+            btnPacientes.Cursor = Cursors.Hand;
+            btnPacientes.CustomizableEdges = customizableEdges25;
+            btnPacientes.DisabledState.BorderColor = Color.DarkGray;
+            btnPacientes.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnPacientes.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnPacientes.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnPacientes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPacientes.ForeColor = Color.White;
+            btnPacientes.ImageAlign = HorizontalAlignment.Right;
+            btnPacientes.Location = new Point(27, 298);
+            btnPacientes.Name = "btnPacientes";
+            btnPacientes.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            btnPacientes.Size = new Size(180, 45);
+            btnPacientes.TabIndex = 58;
+            btnPacientes.Text = "           PACIENTES";
+            btnPacientes.Click += guna2Button2_Click_1;
             // 
             // guna2ImageRadioButton1
             // 
@@ -635,20 +636,20 @@
         private Label label1;
         private Guna.UI2.WinForms.Guna2ImageRadioButton guna2ImageRadioButton11;
         private Guna.UI2.WinForms.Guna2ImageRadioButton guna2ImageRadioButton10;
-        private Guna.UI2.WinForms.Guna2Button guna2Button8;
-        private Guna.UI2.WinForms.Guna2Button guna2Button7;
+        private Guna.UI2.WinForms.Guna2Button btnAuditorias;
+        private Guna.UI2.WinForms.Guna2Button btnHistorial;
         private Label label4;
         private Guna.UI2.WinForms.Guna2ImageRadioButton guna2ImageRadioButton8;
         private Guna.UI2.WinForms.Guna2ImageRadioButton guna2ImageRadioButton7;
         private Guna.UI2.WinForms.Guna2ImageRadioButton guna2ImageRadioButton6;
         private Guna.UI2.WinForms.Guna2ImageRadioButton guna2ImageRadioButton5;
         private Guna.UI2.WinForms.Guna2ImageRadioButton guna2ImageRadioButton4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button5;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button6;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button btnInicio;
+        private Guna.UI2.WinForms.Guna2Button btnInvenServi;
+        private Guna.UI2.WinForms.Guna2Button btnDentista;
+        private Guna.UI2.WinForms.Guna2Button btnFacturacion;
+        private Guna.UI2.WinForms.Guna2Button btnCitas;
+        private Guna.UI2.WinForms.Guna2Button btnPacientes;
         private Guna.UI2.WinForms.Guna2ImageRadioButton guna2ImageRadioButton1;
     }
 }
