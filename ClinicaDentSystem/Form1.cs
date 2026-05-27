@@ -46,7 +46,7 @@ namespace ClinicaDentSystem
         public bool DatosLogin(string username, string password)
         {
 
-            string usuarioCorrecto = "Cristian";
+            string usuarioCorrecto = "Proyecto";
             string contraseñaCorrecta = "1234";
 
             if (username == usuarioCorrecto && password == contraseñaCorrecta)

@@ -38,5 +38,11 @@ namespace ClinicaDentSystem
             Descuento descuento = new Descuento();
             descuento.Show();
         }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            facEmitidas frm = new facEmitidas();
+            frm.ShowDialog();
+        }
     }
 }

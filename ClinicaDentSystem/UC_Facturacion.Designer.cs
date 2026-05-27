@@ -699,6 +699,7 @@
             guna2Button4.TabIndex = 50;
             guna2Button4.Text = "  FACTURAS EMITIDAS";
             guna2Button4.TextAlign = HorizontalAlignment.Left;
+            guna2Button4.Click += guna2Button4_Click;
             // 
             // guna2ImageButton3
             // 
