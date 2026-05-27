@@ -80,7 +80,7 @@
             label3.BackColor = SystemColors.ButtonHighlight;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Gray;
-            label3.Location = new Point(23, 79);
+            label3.Location = new Point(23, 70);
             label3.Name = "label3";
             label3.Size = new Size(60, 21);
             label3.TabIndex = 27;
@@ -92,7 +92,7 @@
             label1.BackColor = SystemColors.ButtonHighlight;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Gray;
-            label1.Location = new Point(784, 79);
+            label1.Location = new Point(784, 70);
             label1.Name = "label1";
             label1.Size = new Size(53, 21);
             label1.TabIndex = 29;
@@ -104,7 +104,7 @@
             label2.BackColor = SystemColors.ButtonHighlight;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Gray;
-            label2.Location = new Point(538, 79);
+            label2.Location = new Point(538, 70);
             label2.Name = "label2";
             label2.Size = new Size(57, 21);
             label2.TabIndex = 31;
@@ -116,7 +116,7 @@
             label4.BackColor = SystemColors.ButtonHighlight;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Gray;
-            label4.Location = new Point(275, 79);
+            label4.Location = new Point(275, 70);
             label4.Name = "label4";
             label4.Size = new Size(61, 21);
             label4.TabIndex = 33;
@@ -227,7 +227,7 @@
             guna2ImageRadioButton1.Image = (Image)resources.GetObject("guna2ImageRadioButton1.Image");
             guna2ImageRadioButton1.ImageOffset = new Point(0, 0);
             guna2ImageRadioButton1.ImageRotate = 0F;
-            guna2ImageRadioButton1.Location = new Point(48, 135);
+            guna2ImageRadioButton1.Location = new Point(48, 140);
             guna2ImageRadioButton1.Name = "guna2ImageRadioButton1";
             guna2ImageRadioButton1.ShadowDecoration.CustomizableEdges = customizableEdges11;
             guna2ImageRadioButton1.Size = new Size(42, 40);
@@ -240,7 +240,7 @@
             guna2ImageRadioButton2.Image = (Image)resources.GetObject("guna2ImageRadioButton2.Image");
             guna2ImageRadioButton2.ImageOffset = new Point(0, 0);
             guna2ImageRadioButton2.ImageRotate = 0F;
-            guna2ImageRadioButton2.Location = new Point(850, 135);
+            guna2ImageRadioButton2.Location = new Point(850, 140);
             guna2ImageRadioButton2.Name = "guna2ImageRadioButton2";
             guna2ImageRadioButton2.ShadowDecoration.CustomizableEdges = customizableEdges12;
             guna2ImageRadioButton2.Size = new Size(42, 40);
@@ -276,7 +276,7 @@
             guna2ImageRadioButton3.Image = (Image)resources.GetObject("guna2ImageRadioButton3.Image");
             guna2ImageRadioButton3.ImageOffset = new Point(0, 0);
             guna2ImageRadioButton3.ImageRotate = 0F;
-            guna2ImageRadioButton3.Location = new Point(626, 135);
+            guna2ImageRadioButton3.Location = new Point(626, 140);
             guna2ImageRadioButton3.Name = "guna2ImageRadioButton3";
             guna2ImageRadioButton3.ShadowDecoration.CustomizableEdges = customizableEdges15;
             guna2ImageRadioButton3.Size = new Size(51, 40);
@@ -348,7 +348,7 @@
             guna2ImageRadioButton5.Image = (Image)resources.GetObject("guna2ImageRadioButton5.Image");
             guna2ImageRadioButton5.ImageOffset = new Point(0, 0);
             guna2ImageRadioButton5.ImageRotate = 0F;
-            guna2ImageRadioButton5.Location = new Point(431, 135);
+            guna2ImageRadioButton5.Location = new Point(431, 140);
             guna2ImageRadioButton5.Name = "guna2ImageRadioButton5";
             guna2ImageRadioButton5.ShadowDecoration.CustomizableEdges = customizableEdges21;
             guna2ImageRadioButton5.Size = new Size(49, 40);
@@ -389,6 +389,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(1087, 578);
             Controls.Add(dataGridView1);
             Controls.Add(guna2ImageRadioButton5);
