@@ -191,9 +191,10 @@
             label3.Font = new Font("Nirmala UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(74, 128);
             label3.Name = "label3";
-            label3.Size = new Size(48, 15);
+            label3.Size = new Size(57, 15);
             label3.TabIndex = 60;
-            label3.Text = "Cristian";
+            label3.Text = "Proyecto";
+            label3.Click += label3_Click;
             // 
             // guna2Separator3
             // 
