@@ -605,7 +605,7 @@
             Controls.Add(guna2Panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Dashboard";
-            Text = "Dashboard";
+            Text = "Clicica Dental";
             Load += Dashboard_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);

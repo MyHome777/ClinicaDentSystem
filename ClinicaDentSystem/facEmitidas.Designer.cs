@@ -202,6 +202,7 @@
             // 
             btnPacientes.BackColor = Color.Transparent;
             btnPacientes.BackgroundImage = (Image)resources.GetObject("btnPacientes.BackgroundImage");
+            btnPacientes.BorderColor = SystemColors.ButtonHighlight;
             btnPacientes.BorderRadius = 8;
             btnPacientes.Cursor = Cursors.Hand;
             btnPacientes.CustomizableEdges = customizableEdges9;
