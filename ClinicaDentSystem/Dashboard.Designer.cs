@@ -67,11 +67,11 @@
             guna2Separator5 = new Guna.UI2.WinForms.Guna2Separator();
             guna2Separator4 = new Guna.UI2.WinForms.Guna2Separator();
             guna2ImageButton4 = new Guna.UI2.WinForms.Guna2ImageButton();
-            label3 = new Label();
+            lblNombre = new Label();
             guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
             guna2ImageRadioButton3 = new Guna.UI2.WinForms.Guna2ImageRadioButton();
             guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
-            label2 = new Label();
+            lblRol = new Label();
             label6 = new Label();
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             label5 = new Label();
@@ -117,11 +117,11 @@
             guna2Panel2.Controls.Add(guna2Separator5);
             guna2Panel2.Controls.Add(guna2Separator4);
             guna2Panel2.Controls.Add(guna2ImageButton4);
-            guna2Panel2.Controls.Add(label3);
+            guna2Panel2.Controls.Add(lblNombre);
             guna2Panel2.Controls.Add(guna2Separator3);
             guna2Panel2.Controls.Add(guna2ImageRadioButton3);
             guna2Panel2.Controls.Add(guna2Separator2);
-            guna2Panel2.Controls.Add(label2);
+            guna2Panel2.Controls.Add(lblRol);
             guna2Panel2.Controls.Add(label6);
             guna2Panel2.Controls.Add(guna2Separator1);
             guna2Panel2.Controls.Add(label5);
@@ -184,15 +184,16 @@
             guna2ImageButton4.UseTransparentBackground = true;
             guna2ImageButton4.Click += guna2ImageButton4_Click_1;
             // 
-            // label3
+            // lblNombre
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Nirmala UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(74, 128);
-            label3.Name = "label3";
-            label3.Size = new Size(48, 15);
-            label3.TabIndex = 60;
-            label3.Text = "Cristian";
+            lblNombre.AutoSize = true;
+            lblNombre.Font = new Font("Nirmala UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNombre.Location = new Point(74, 128);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(48, 15);
+            lblNombre.TabIndex = 60;
+            lblNombre.Text = "Cristian";
+            lblNombre.Click += lblNombre_Click;
             // 
             // guna2Separator3
             // 
@@ -223,14 +224,14 @@
             guna2Separator2.Size = new Size(175, 13);
             guna2Separator2.TabIndex = 80;
             // 
-            // label2
+            // lblRol
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(74, 143);
-            label2.Name = "label2";
-            label2.Size = new Size(83, 15);
-            label2.TabIndex = 55;
-            label2.Text = "Administrador";
+            lblRol.AutoSize = true;
+            lblRol.Location = new Point(74, 143);
+            lblRol.Name = "lblRol";
+            lblRol.Size = new Size(83, 15);
+            lblRol.TabIndex = 55;
+            lblRol.Text = "Administrador";
             // 
             // label6
             // 
@@ -273,6 +274,7 @@
             guna2ImageRadioButton9.Size = new Size(47, 45);
             guna2ImageRadioButton9.TabIndex = 72;
             guna2ImageRadioButton9.UseTransparentBackground = true;
+            guna2ImageRadioButton9.CheckedChanged += guna2ImageRadioButton9_CheckedChanged;
             // 
             // label1
             // 
@@ -299,6 +301,7 @@
             guna2ImageRadioButton11.Size = new Size(47, 45);
             guna2ImageRadioButton11.TabIndex = 77;
             guna2ImageRadioButton11.UseTransparentBackground = true;
+            guna2ImageRadioButton11.CheckedChanged += guna2ImageRadioButton11_CheckedChanged;
             // 
             // guna2ImageRadioButton10
             // 
@@ -314,6 +317,7 @@
             guna2ImageRadioButton10.Size = new Size(47, 45);
             guna2ImageRadioButton10.TabIndex = 76;
             guna2ImageRadioButton10.UseTransparentBackground = true;
+            guna2ImageRadioButton10.CheckedChanged += guna2ImageRadioButton10_CheckedChanged;
             // 
             // guna2Button8
             // 
@@ -381,6 +385,7 @@
             guna2ImageRadioButton8.Size = new Size(47, 45);
             guna2ImageRadioButton8.TabIndex = 71;
             guna2ImageRadioButton8.UseTransparentBackground = true;
+            guna2ImageRadioButton8.CheckedChanged += guna2ImageRadioButton8_CheckedChanged;
             // 
             // guna2ImageRadioButton7
             // 
@@ -396,6 +401,7 @@
             guna2ImageRadioButton7.Size = new Size(47, 45);
             guna2ImageRadioButton7.TabIndex = 70;
             guna2ImageRadioButton7.UseTransparentBackground = true;
+            guna2ImageRadioButton7.CheckedChanged += guna2ImageRadioButton7_CheckedChanged;
             // 
             // guna2ImageRadioButton6
             // 
@@ -411,6 +417,7 @@
             guna2ImageRadioButton6.Size = new Size(47, 45);
             guna2ImageRadioButton6.TabIndex = 68;
             guna2ImageRadioButton6.UseTransparentBackground = true;
+            guna2ImageRadioButton6.CheckedChanged += guna2ImageRadioButton6_CheckedChanged;
             // 
             // guna2ImageRadioButton5
             // 
@@ -426,6 +433,7 @@
             guna2ImageRadioButton5.Size = new Size(47, 45);
             guna2ImageRadioButton5.TabIndex = 67;
             guna2ImageRadioButton5.UseTransparentBackground = true;
+            guna2ImageRadioButton5.CheckedChanged += guna2ImageRadioButton5_CheckedChanged;
             // 
             // guna2ImageRadioButton4
             // 
@@ -441,6 +449,7 @@
             guna2ImageRadioButton4.Size = new Size(47, 45);
             guna2ImageRadioButton4.TabIndex = 62;
             guna2ImageRadioButton4.UseTransparentBackground = true;
+            guna2ImageRadioButton4.CheckedChanged += guna2ImageRadioButton4_CheckedChanged;
             // 
             // guna2Button1
             // 
@@ -623,11 +632,11 @@
         private Guna.UI2.WinForms.Guna2Separator guna2Separator5;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator4;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton4;
-        private Label label3;
+        private Label lblNombre;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
         private Guna.UI2.WinForms.Guna2ImageRadioButton guna2ImageRadioButton3;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
-        private Label label2;
+        private Label lblRol;
         private Label label6;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private Label label5;

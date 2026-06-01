@@ -53,11 +53,11 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(47, 87);
-            dataGridView1.MinimumSize = new Size(1480, 620);
+            dataGridView1.Location = new Point(47, 81);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1480, 843);
+            dataGridView1.Size = new Size(1439, 764);
             dataGridView1.TabIndex = 7;
             // 
             // guna2ImageButton6
@@ -82,7 +82,7 @@
             guna2TextBox1.BorderColor = Color.FromArgb(30, 111, 217);
             guna2TextBox1.BorderRadius = 15;
             guna2TextBox1.CustomizableEdges = customizableEdges2;
-            guna2TextBox1.DefaultText = "Buscar ";
+            guna2TextBox1.DefaultText = "";
             guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -92,7 +92,8 @@
             guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             guna2TextBox1.Location = new Point(440, 23);
             guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PlaceholderText = "";
+            guna2TextBox1.PlaceholderForeColor = Color.Gray;
+            guna2TextBox1.PlaceholderText = "Buscar ";
             guna2TextBox1.SelectedText = "";
             guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges3;
             guna2TextBox1.Size = new Size(592, 36);

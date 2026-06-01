@@ -30,6 +30,9 @@ namespace ClinicaDentSystem
             guna2Panel3.AutoScroll = true;
 
             CargarVista(new UC_Inicio());
+
+            lblNombre.Text = Program.UsuarioActivo.NombreUsuario;
+            lblRol.Text = Program.UsuarioActivo.NombreRol;
         }
 
         private void CargarVista(UserControl control)
@@ -55,8 +58,6 @@ namespace ClinicaDentSystem
             guna2Panel3.Dock = DockStyle.Fill;
             guna2Panel2.Dock = DockStyle.Left;
 
-            // El panel de contenido se agrega primero para que DockStyle.Fill
-            // respete el ancho real del sidebar en lugar de quedar debajo.
             guna2Panel1.Controls.Add(guna2Panel3);
             guna2Panel1.Controls.Add(guna2Panel2);
 
@@ -76,7 +77,6 @@ namespace ClinicaDentSystem
             guna2Panel2.Width = Math.Clamp(sidebarWidth, SidebarMinWidth, SidebarMaxWidth);
         }
 
-        // SIDEBAR BOTONES
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             CargarVista(new UC_Inicio());
@@ -122,7 +122,6 @@ namespace ClinicaDentSystem
             CargarVista(new UC_Usuarios());
         }
 
-        // LOGOUT
         private void guna2ImageRadioButton3_CheckedChanged(object sender, EventArgs e)
         {
             Login login = new Login();
@@ -217,6 +216,51 @@ namespace ClinicaDentSystem
         private void guna2Button1_Click_1(object sender, EventArgs e)
         {
             CargarVista(new UC_Inicio());
+        }
+
+        private void guna2ImageRadioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarVista(new UC_Inicio());
+        }
+
+        private void guna2ImageRadioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarVista(new UC_Pacientes1());
+        }
+
+        private void guna2ImageRadioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarVista(new UC_Citas());
+        }
+
+        private void guna2ImageRadioButton9_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarVista(new UC_Dentistas());
+        }
+
+        private void guna2ImageRadioButton7_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarVista(new UC_Inventario());
+        }
+
+        private void guna2ImageRadioButton8_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarVista(new UC_Facturacion());
+        }
+
+        private void guna2ImageRadioButton10_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarVista(new UC_Historial());
+        }
+
+        private void guna2ImageRadioButton11_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarVista(new UC_Auditorias());
+        }
+
+        private void lblNombre_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

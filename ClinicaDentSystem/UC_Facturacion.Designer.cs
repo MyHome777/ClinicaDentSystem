@@ -456,11 +456,11 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(68, 434);
-            dataGridView1.MinimumSize = new Size(1350, 500);
+            dataGridView1.Location = new Point(47, 449);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1480, 500);
+            dataGridView1.Size = new Size(1427, 405);
             dataGridView1.TabIndex = 43;
             // 
             // guna2ContainerControl2

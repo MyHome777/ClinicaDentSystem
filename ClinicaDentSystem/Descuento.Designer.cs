@@ -44,7 +44,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label3 = new Label();
             guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
-            dataGridView1 = new DataGridView();
             guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
             label6 = new Label();
             guna2ComboBox2 = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -55,6 +54,7 @@
             guna2DateTimePicker2 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             guna2ImageButton5 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -89,14 +89,6 @@
             guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2TextBox2.Size = new Size(133, 36);
             guna2TextBox2.TabIndex = 93;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 201);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(591, 237);
-            dataGridView1.TabIndex = 95;
             // 
             // guna2ComboBox1
             // 
@@ -256,6 +248,15 @@
             guna2Button2.Text = "AGREGAR";
             guna2Button2.TextAlign = HorizontalAlignment.Left;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.BackgroundColor = SystemColors.Control;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 201);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(591, 237);
+            dataGridView1.TabIndex = 95;
+            // 
             // Descuento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -286,7 +287,6 @@
 
         private Label label3;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox2;
-        private DataGridView dataGridView1;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
         private Label label6;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox2;
@@ -297,5 +297,6 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker2;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton5;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private DataGridView dataGridView1;
     }
 }

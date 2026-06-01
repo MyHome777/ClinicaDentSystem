@@ -83,6 +83,7 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(3, 226);
             dataGridView1.Name = "dataGridView1";
@@ -111,7 +112,7 @@
             guna2TextBox1.BorderColor = Color.FromArgb(30, 111, 217);
             guna2TextBox1.BorderRadius = 15;
             guna2TextBox1.CustomizableEdges = customizableEdges2;
-            guna2TextBox1.DefaultText = "Buscar Productos o Categorias";
+            guna2TextBox1.DefaultText = "";
             guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -121,7 +122,8 @@
             guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             guna2TextBox1.Location = new Point(132, 90);
             guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PlaceholderText = "";
+            guna2TextBox1.PlaceholderForeColor = Color.Gray;
+            guna2TextBox1.PlaceholderText = "Buscar Productos o Categorias";
             guna2TextBox1.SelectedText = "";
             guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges3;
             guna2TextBox1.Size = new Size(303, 36);
@@ -188,10 +190,11 @@
             // 
             // dataGridView2
             // 
+            dataGridView2.BackgroundColor = SystemColors.Control;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(640, 226);
             dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(887, 620);
+            dataGridView2.Size = new Size(884, 620);
             dataGridView2.TabIndex = 18;
             // 
             // guna2ImageButton5
@@ -255,7 +258,7 @@
             guna2TextBox2.BorderColor = Color.FromArgb(30, 111, 217);
             guna2TextBox2.BorderRadius = 15;
             guna2TextBox2.CustomizableEdges = customizableEdges11;
-            guna2TextBox2.DefaultText = "Buscar Servicios";
+            guna2TextBox2.DefaultText = "";
             guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             guna2TextBox2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             guna2TextBox2.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -265,7 +268,8 @@
             guna2TextBox2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             guna2TextBox2.Location = new Point(893, 90);
             guna2TextBox2.Name = "guna2TextBox2";
-            guna2TextBox2.PlaceholderText = "";
+            guna2TextBox2.PlaceholderForeColor = Color.Gray;
+            guna2TextBox2.PlaceholderText = "Buscar Servicios";
             guna2TextBox2.SelectedText = "";
             guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges12;
             guna2TextBox2.Size = new Size(303, 36);

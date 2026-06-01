@@ -1,3 +1,7 @@
+using DAO;
+using Modelos;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 namespace ClinicaDentSystem
 {
     public partial class Login : Form
@@ -26,38 +30,48 @@ namespace ClinicaDentSystem
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            string userIngresado = guna2TextBox1.Text;
-            string passIngresado = guna2TextBox2.Text;
-
-            if (DatosLogin(userIngresado, passIngresado))
+            if (credencialesValidas())
             {
-                Dashboard formDashboard = new Dashboard();
-                formDashboard.Show();
-
+                Dashboard dashboard = new Dashboard();
+                dashboard.Show();
                 this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Usuario o contraseña incorrectos. Intente de nuevo.", "Error de Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
-        public bool DatosLogin(string username, string password)
+        private bool credencialesValidas()
         {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-            string usuarioCorrecto = "Cristian";
-            string contraseñaCorrecta = "1234";
-
-            if (username == usuarioCorrecto && password == contraseñaCorrecta)
+            if (string.IsNullOrEmpty(txt_user.Text))
             {
-                return true;
-            }
-            else
-            {
-
+                MessageBox.Show("Debe ingresar el usuario",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                 return false;
             }
+
+            if (string.IsNullOrEmpty(txt_pass.Text))
+            {
+                MessageBox.Show("Debe ingresar la clave",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return false;
+            }
+
+            Usuario usuario = usuarioDAO.Login(txt_user.Text, txt_pass.Text, out string msjError);
+
+            if (usuario == null || !string.IsNullOrEmpty(msjError))
+            {
+                MessageBox.Show("Credenciales no válidas", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            Program.UsuarioActivo = usuario;
+            return true;
         }
 
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -40,26 +41,30 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             guna2ContainerControl1 = new Guna.UI2.WinForms.Guna2ContainerControl();
-            label3 = new Label();
+            lblPacientes = new Label();
             label2 = new Label();
-            label4 = new Label();
+            lblCitasHoy = new Label();
             label5 = new Label();
             guna2ContainerControl5 = new Guna.UI2.WinForms.Guna2ContainerControl();
             guna2ContainerControl2 = new Guna.UI2.WinForms.Guna2ContainerControl();
-            label6 = new Label();
+            lblStockBajo = new Label();
             label7 = new Label();
             guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
             label8 = new Label();
             label9 = new Label();
-            dataGridView1 = new DataGridView();
-            dataGridView2 = new DataGridView();
+            dgvCitasHoy = new DataGridView();
+            class1BindingSource = new BindingSource(components);
+            conexionBindingSource = new BindingSource(components);
+            dgvStockBajo = new DataGridView();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             guna2ContainerControl1.SuspendLayout();
             guna2ContainerControl5.SuspendLayout();
             guna2ContainerControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCitasHoy).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)class1BindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)conexionBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvStockBajo).BeginInit();
             guna2Panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -79,7 +84,7 @@
             // 
             guna2ContainerControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             guna2ContainerControl1.BorderRadius = 8;
-            guna2ContainerControl1.Controls.Add(label3);
+            guna2ContainerControl1.Controls.Add(lblPacientes);
             guna2ContainerControl1.Controls.Add(label2);
             guna2ContainerControl1.CustomizableEdges = customizableEdges1;
             guna2ContainerControl1.FillColor = Color.FromArgb(30, 111, 217);
@@ -91,17 +96,17 @@
             guna2ContainerControl1.TabIndex = 2;
             guna2ContainerControl1.Text = "guna2ContainerControl1";
             // 
-            // label3
+            // lblPacientes
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(30, 111, 217);
-            label3.Font = new Font("Segoe UI Black", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(195, 62);
-            label3.Name = "label3";
-            label3.Size = new Size(40, 46);
-            label3.TabIndex = 5;
-            label3.Text = "0";
+            lblPacientes.AutoSize = true;
+            lblPacientes.BackColor = Color.FromArgb(30, 111, 217);
+            lblPacientes.Font = new Font("Segoe UI Black", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPacientes.ForeColor = SystemColors.ButtonHighlight;
+            lblPacientes.Location = new Point(195, 62);
+            lblPacientes.Name = "lblPacientes";
+            lblPacientes.Size = new Size(40, 46);
+            lblPacientes.TabIndex = 5;
+            lblPacientes.Text = "0";
             // 
             // label2
             // 
@@ -115,17 +120,17 @@
             label2.TabIndex = 4;
             label2.Text = "Pacientes Activos";
             // 
-            // label4
+            // lblCitasHoy
             // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.FromArgb(255, 128, 0);
-            label4.Font = new Font("Segoe UI Black", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = SystemColors.ButtonHighlight;
-            label4.Location = new Point(195, 62);
-            label4.Name = "label4";
-            label4.Size = new Size(40, 46);
-            label4.TabIndex = 5;
-            label4.Text = "0";
+            lblCitasHoy.AutoSize = true;
+            lblCitasHoy.BackColor = Color.FromArgb(255, 128, 0);
+            lblCitasHoy.Font = new Font("Segoe UI Black", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCitasHoy.ForeColor = SystemColors.ButtonHighlight;
+            lblCitasHoy.Location = new Point(195, 62);
+            lblCitasHoy.Name = "lblCitasHoy";
+            lblCitasHoy.Size = new Size(40, 46);
+            lblCitasHoy.TabIndex = 5;
+            lblCitasHoy.Text = "0";
             // 
             // label5
             // 
@@ -144,7 +149,7 @@
             // 
             guna2ContainerControl5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             guna2ContainerControl5.BorderRadius = 8;
-            guna2ContainerControl5.Controls.Add(label4);
+            guna2ContainerControl5.Controls.Add(lblCitasHoy);
             guna2ContainerControl5.Controls.Add(label5);
             guna2ContainerControl5.CustomizableEdges = customizableEdges3;
             guna2ContainerControl5.FillColor = Color.FromArgb(255, 128, 0);
@@ -160,7 +165,7 @@
             // 
             guna2ContainerControl2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             guna2ContainerControl2.BorderRadius = 8;
-            guna2ContainerControl2.Controls.Add(label6);
+            guna2ContainerControl2.Controls.Add(lblStockBajo);
             guna2ContainerControl2.Controls.Add(label7);
             guna2ContainerControl2.CustomizableEdges = customizableEdges5;
             guna2ContainerControl2.FillColor = Color.Green;
@@ -172,17 +177,17 @@
             guna2ContainerControl2.TabIndex = 6;
             guna2ContainerControl2.Text = "guna2ContainerControl2";
             // 
-            // label6
+            // lblStockBajo
             // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Green;
-            label6.Font = new Font("Segoe UI Black", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = SystemColors.ButtonHighlight;
-            label6.Location = new Point(195, 62);
-            label6.Name = "label6";
-            label6.Size = new Size(40, 46);
-            label6.TabIndex = 5;
-            label6.Text = "0";
+            lblStockBajo.AutoSize = true;
+            lblStockBajo.BackColor = Color.Green;
+            lblStockBajo.Font = new Font("Segoe UI Black", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblStockBajo.ForeColor = SystemColors.ButtonHighlight;
+            lblStockBajo.Location = new Point(195, 62);
+            lblStockBajo.Name = "lblStockBajo";
+            lblStockBajo.Size = new Size(40, 46);
+            lblStockBajo.TabIndex = 5;
+            lblStockBajo.Text = "0";
             // 
             // label7
             // 
@@ -229,23 +234,41 @@
             label9.TabIndex = 25;
             label9.Text = "Productos Con Stock Bajo";
             // 
-            // dataGridView1
+            // dgvCitasHoy
             // 
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(47, 341);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(723, 350);
-            dataGridView1.TabIndex = 26;
+            dgvCitasHoy.AllowUserToAddRows = false;
+            dgvCitasHoy.AllowUserToDeleteRows = false;
+            dgvCitasHoy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvCitasHoy.BackgroundColor = SystemColors.Control;
+            dgvCitasHoy.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCitasHoy.Location = new Point(47, 341);
+            dgvCitasHoy.Name = "dgvCitasHoy";
+            dgvCitasHoy.ReadOnly = true;
+            dgvCitasHoy.Size = new Size(723, 361);
+            dgvCitasHoy.TabIndex = 26;
+            dgvCitasHoy.CellContentClick += dgvCitasHoy_CellContentClick;
             // 
-            // dataGridView2
+            // class1BindingSource
             // 
-            dataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(776, 341);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(745, 350);
-            dataGridView2.TabIndex = 27;
+            class1BindingSource.DataSource = typeof(MODELOS.Class1);
+            // 
+            // conexionBindingSource
+            // 
+            conexionBindingSource.DataSource = typeof(DAO.Conexion);
+            // 
+            // dgvStockBajo
+            // 
+            dgvStockBajo.AllowUserToAddRows = false;
+            dgvStockBajo.AllowUserToDeleteRows = false;
+            dgvStockBajo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvStockBajo.BackgroundColor = SystemColors.Control;
+            dgvStockBajo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvStockBajo.Location = new Point(776, 341);
+            dgvStockBajo.Name = "dgvStockBajo";
+            dgvStockBajo.ReadOnly = true;
+            dgvStockBajo.Size = new Size(745, 361);
+            dgvStockBajo.TabIndex = 27;
+            dgvStockBajo.CellContentClick += dgvStockBajo_CellContentClick;
             // 
             // guna2Panel1
             // 
@@ -265,7 +288,7 @@
             guna2Panel2.Location = new Point(36, 308);
             guna2Panel2.Name = "guna2Panel2";
             guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2Panel2.Size = new Size(1499, 383);
+            guna2Panel2.Size = new Size(1499, 412);
             guna2Panel2.TabIndex = 29;
             // 
             // UC_Inicio
@@ -273,8 +296,8 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.ButtonHighlight;
-            Controls.Add(dataGridView2);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvStockBajo);
+            Controls.Add(dgvCitasHoy);
             Controls.Add(label8);
             Controls.Add(guna2Separator2);
             Controls.Add(guna2ContainerControl2);
@@ -291,8 +314,10 @@
             guna2ContainerControl5.PerformLayout();
             guna2ContainerControl2.ResumeLayout(false);
             guna2ContainerControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCitasHoy).EndInit();
+            ((System.ComponentModel.ISupportInitialize)class1BindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)conexionBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvStockBajo).EndInit();
             guna2Panel2.ResumeLayout(false);
             guna2Panel2.PerformLayout();
             ResumeLayout(false);
@@ -304,19 +329,21 @@
         private Label label1;
         private Guna.UI2.WinForms.Guna2ContainerControl guna2ContainerControl1;
         private Label label2;
-        private Label label3;
-        private Label label4;
+        private Label lblPacientes;
+        private Label lblCitasHoy;
         private Label label5;
         private Guna.UI2.WinForms.Guna2ContainerControl guna2ContainerControl5;
         private Guna.UI2.WinForms.Guna2ContainerControl guna2ContainerControl2;
-        private Label label6;
+        private Label lblStockBajo;
         private Label label7;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
         private Label label8;
         private Label label9;
-        private DataGridView dataGridView1;
-        private DataGridView dataGridView2;
+        private DataGridView dgvCitasHoy;
+        private DataGridView dgvStockBajo;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private BindingSource conexionBindingSource;
+        private BindingSource class1BindingSource;
     }
 }
