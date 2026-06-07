@@ -11,14 +11,22 @@ namespace ClinicaDentSystem
         private const int SidebarDesignWidth = 235;
         private const int SidebarMinWidth = 185;
         private const int SidebarMaxWidth = 320;
+        private readonly Login? _login;
+        private bool _cerrandoSesion;
 
-        public Dashboard()
+        public Dashboard() : this(null)
         {
+        }
+
+        public Dashboard(Login? login)
+        {
+            _login = login;
             InitializeComponent();
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSize = false;
             ResponsiveLayout.Configure(this);
             SizeChanged += Dashboard_SizeChanged;
+            FormClosed += Dashboard_FormClosed;
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -124,9 +132,7 @@ namespace ClinicaDentSystem
 
         private void guna2ImageRadioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
-            this.Close();
+            CerrarSesion();
         }
 
         private void guna2Panel1_Paint(object sender, PaintEventArgs e)
@@ -141,9 +147,7 @@ namespace ClinicaDentSystem
 
         private void guna2ImageRadioButton3_CheckedChanged_1(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
-            this.Close();
+            CerrarSesion();
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
@@ -208,9 +212,7 @@ namespace ClinicaDentSystem
 
         private void guna2ImageRadioButton3_CheckedChanged_2(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
-            this.Close();
+            CerrarSesion();
         }
 
         private void guna2Button1_Click_1(object sender, EventArgs e)
@@ -261,6 +263,32 @@ namespace ClinicaDentSystem
         private void lblNombre_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CerrarSesion()
+        {
+            _cerrandoSesion = true;
+
+            if (_login is not null)
+            {
+                _login.PrepararNuevaSesion();
+                _login.Show();
+            }
+            else
+            {
+                Login login = new Login();
+                login.Show();
+            }
+
+            Close();
+        }
+
+        private void Dashboard_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            if (!_cerrandoSesion)
+            {
+                Application.Exit();
+            }
         }
     }
 }

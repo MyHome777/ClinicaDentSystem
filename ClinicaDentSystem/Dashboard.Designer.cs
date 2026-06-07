@@ -585,7 +585,7 @@
             guna2ImageRadioButton1.ImageOffset = new Point(0, 0);
             guna2ImageRadioButton1.ImageRotate = 0F;
             guna2ImageRadioButton1.ImageSize = new Size(100, 100);
-            guna2ImageRadioButton1.Location = new Point(74, 7);
+            guna2ImageRadioButton1.Location = new Point(77, 7);
             guna2ImageRadioButton1.Name = "guna2ImageRadioButton1";
             guna2ImageRadioButton1.ShadowDecoration.CustomizableEdges = customizableEdges27;
             guna2ImageRadioButton1.Size = new Size(67, 61);

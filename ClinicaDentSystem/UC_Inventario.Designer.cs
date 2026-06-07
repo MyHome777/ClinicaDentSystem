@@ -213,6 +213,7 @@
             guna2ImageButton5.Size = new Size(42, 42);
             guna2ImageButton5.TabIndex = 20;
             guna2ImageButton5.UseTransparentBackground = true;
+            guna2ImageButton5.Click += guna2ImageButton5_Click;
             // 
             // guna2Button2
             // 
@@ -338,6 +339,7 @@
             guna2ImageButton10.Size = new Size(42, 42);
             guna2ImageButton10.TabIndex = 27;
             guna2ImageButton10.UseTransparentBackground = true;
+            guna2ImageButton10.Click += guna2ImageButton10_Click;
             // 
             // guna2Button1
             // 

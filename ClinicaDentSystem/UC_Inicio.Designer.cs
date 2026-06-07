@@ -240,6 +240,7 @@
             dgvCitasHoy.AllowUserToDeleteRows = false;
             dgvCitasHoy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvCitasHoy.BackgroundColor = SystemColors.Control;
+            dgvCitasHoy.BorderStyle = BorderStyle.None;
             dgvCitasHoy.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCitasHoy.Location = new Point(47, 341);
             dgvCitasHoy.Name = "dgvCitasHoy";
@@ -247,10 +248,6 @@
             dgvCitasHoy.Size = new Size(723, 361);
             dgvCitasHoy.TabIndex = 26;
             dgvCitasHoy.CellContentClick += dgvCitasHoy_CellContentClick;
-            // 
-            // class1BindingSource
-            // 
-            class1BindingSource.DataSource = typeof(MODELOS.Class1);
             // 
             // conexionBindingSource
             // 
@@ -262,6 +259,7 @@
             dgvStockBajo.AllowUserToDeleteRows = false;
             dgvStockBajo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvStockBajo.BackgroundColor = SystemColors.Control;
+            dgvStockBajo.BorderStyle = BorderStyle.None;
             dgvStockBajo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStockBajo.Location = new Point(776, 341);
             dgvStockBajo.Name = "dgvStockBajo";

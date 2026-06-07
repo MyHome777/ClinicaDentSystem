@@ -16,6 +16,7 @@ namespace ClinicaDentSystem
         {
             InitializeComponent();
             ResponsiveLayout.Configure(this);
+            guna2Button4.Click += guna2Button4_Click;
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -37,6 +38,12 @@ namespace ClinicaDentSystem
         {
             Descuento descuento = new Descuento();
             descuento.Show();
+        }
+
+        private void guna2Button4_Click(object? sender, EventArgs e)
+        {
+            using facEmitidas frm = new facEmitidas();
+            frm.ShowDialog();
         }
     }
 }

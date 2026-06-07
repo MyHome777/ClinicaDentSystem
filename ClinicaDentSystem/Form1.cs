@@ -32,11 +32,22 @@ namespace ClinicaDentSystem
         {
             if (credencialesValidas())
             {
-                Dashboard dashboard = new Dashboard();
+                Dashboard dashboard = new Dashboard(this);
                 dashboard.Show();
                 this.Hide();
             }
 
+        }
+
+        internal void PrepararNuevaSesion()
+        {
+            txt_pass.Text = string.Empty;
+            txt_user.Focus();
+        }
+        private void linkRecuperarUsuario_LinkClicked(object? sender, LinkLabelLinkClickedEventArgs e)
+        {
+            using RecuperarUsuario recuperarUsuario = new RecuperarUsuario();
+            recuperarUsuario.ShowDialog(this);
         }
 
         private bool credencialesValidas()

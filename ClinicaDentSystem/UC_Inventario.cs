@@ -53,5 +53,17 @@ namespace ClinicaDentSystem
             Categoria categoria = new Categoria();
             categoria.Show();
         }
+
+        private void guna2ImageButton5_Click(object sender, EventArgs e)
+        {
+            Categoria categoria = new Categoria();
+            categoria.Show();
+        }
+
+        private void guna2ImageButton10_Click(object sender, EventArgs e)
+        {
+            Proveedor proveedor = new Proveedor();
+            proveedor.Show();
+        }
     }
 }
