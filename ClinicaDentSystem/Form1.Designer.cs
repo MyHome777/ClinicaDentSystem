@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(components);
             txt_user = new Guna.UI2.WinForms.Guna2TextBox();
@@ -50,7 +50,7 @@
             // 
             txt_user.Animated = true;
             txt_user.BorderRadius = 8;
-            txt_user.CustomizableEdges = customizableEdges7;
+            txt_user.CustomizableEdges = customizableEdges1;
             txt_user.DefaultText = "";
             txt_user.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txt_user.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -63,7 +63,7 @@
             txt_user.Name = "txt_user";
             txt_user.PlaceholderText = "";
             txt_user.SelectedText = "";
-            txt_user.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txt_user.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txt_user.Size = new Size(236, 36);
             txt_user.TabIndex = 0;
             txt_user.TextChanged += guna2TextBox1_TextChanged;
@@ -90,7 +90,7 @@
             // 
             txt_pass.Animated = true;
             txt_pass.BorderRadius = 8;
-            txt_pass.CustomizableEdges = customizableEdges9;
+            txt_pass.CustomizableEdges = customizableEdges3;
             txt_pass.DefaultText = "";
             txt_pass.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txt_pass.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -103,7 +103,7 @@
             txt_pass.Name = "txt_pass";
             txt_pass.PlaceholderText = "";
             txt_pass.SelectedText = "";
-            txt_pass.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            txt_pass.ShadowDecoration.CustomizableEdges = customizableEdges4;
             txt_pass.Size = new Size(236, 36);
             txt_pass.TabIndex = 2;
             txt_pass.TextChanged += guna2TextBox2_TextChanged;
@@ -111,10 +111,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Sans Serif Collection", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(112, 9);
             label3.Name = "label3";
-            label3.Size = new Size(167, 64);
+            label3.Size = new Size(144, 24);
             label3.TabIndex = 4;
             label3.Text = "Clinica Dental ";
             label3.Click += label3_Click;
@@ -122,7 +122,7 @@
             // guna2Button1
             // 
             guna2Button1.BorderRadius = 8;
-            guna2Button1.CustomizableEdges = customizableEdges11;
+            guna2Button1.CustomizableEdges = customizableEdges5;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -131,7 +131,7 @@
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Location = new Point(76, 277);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2Button1.Size = new Size(217, 45);
             guna2Button1.TabIndex = 5;
             guna2Button1.Text = "INGRESAR";
@@ -162,6 +162,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Login";
             Text = "Iniciar Sesión";
+            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }

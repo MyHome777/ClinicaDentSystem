@@ -40,7 +40,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             dataGridView1 = new DataGridView();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            txtBuscar = new Guna.UI2.WinForms.Guna2TextBox();
             guna2ImageButton6 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2ImageButton3 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
@@ -70,28 +70,30 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(1437, 543);
             dataGridView1.TabIndex = 6;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // guna2TextBox1
+            // txtBuscar
             // 
-            guna2TextBox1.BorderColor = Color.FromArgb(30, 111, 217);
-            guna2TextBox1.BorderRadius = 15;
-            guna2TextBox1.CustomizableEdges = customizableEdges1;
-            guna2TextBox1.DefaultText = "";
-            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Segoe UI", 9F);
-            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(479, 23);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PlaceholderForeColor = Color.Gray;
-            guna2TextBox1.PlaceholderText = "Buscar Pacientes";
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2TextBox1.Size = new Size(592, 36);
-            guna2TextBox1.TabIndex = 7;
+            txtBuscar.BorderColor = Color.FromArgb(30, 111, 217);
+            txtBuscar.BorderRadius = 15;
+            txtBuscar.CustomizableEdges = customizableEdges1;
+            txtBuscar.DefaultText = "";
+            txtBuscar.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtBuscar.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtBuscar.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtBuscar.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtBuscar.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBuscar.Font = new Font("Segoe UI", 9F);
+            txtBuscar.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBuscar.Location = new Point(479, 23);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.PlaceholderForeColor = Color.Gray;
+            txtBuscar.PlaceholderText = "Buscar Pacientes";
+            txtBuscar.SelectedText = "";
+            txtBuscar.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtBuscar.Size = new Size(592, 36);
+            txtBuscar.TabIndex = 7;
+            txtBuscar.KeyDown += txtBuscar_KeyDown;
             // 
             // guna2ImageButton6
             // 
@@ -109,6 +111,7 @@
             guna2ImageButton6.Size = new Size(52, 46);
             guna2ImageButton6.TabIndex = 11;
             guna2ImageButton6.UseTransparentBackground = true;
+            guna2ImageButton6.Click += guna2ImageButton6_Click;
             // 
             // guna2ImageButton3
             // 
@@ -156,6 +159,7 @@
             guna2ImageButton2.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2ImageButton2.Size = new Size(52, 46);
             guna2ImageButton2.TabIndex = 14;
+            guna2ImageButton2.Click += guna2ImageButton2_Click;
             // 
             // guna2ImageButton5
             // 
@@ -206,7 +210,7 @@
             Controls.Add(guna2ImageButton1);
             Controls.Add(guna2ImageButton3);
             Controls.Add(guna2ImageButton6);
-            Controls.Add(guna2TextBox1);
+            Controls.Add(txtBuscar);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
             Name = "UC_Dentistas";
@@ -221,7 +225,7 @@
 
         private Label label1;
         private DataGridView dataGridView1;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Guna.UI2.WinForms.Guna2TextBox txtBuscar;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton6;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton3;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton1;
