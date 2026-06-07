@@ -55,18 +55,18 @@
             guna2ImageButton2 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
             label2 = new Label();
-            dataGridView2 = new DataGridView();
+            dgvServicios = new DataGridView();
             guna2ImageButton5 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            guna2ImageButton4 = new Guna.UI2.WinForms.Guna2ImageButton();
-            guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
-            guna2ImageButton7 = new Guna.UI2.WinForms.Guna2ImageButton();
-            guna2ImageButton8 = new Guna.UI2.WinForms.Guna2ImageButton();
-            guna2ImageButton9 = new Guna.UI2.WinForms.Guna2ImageButton();
+            btnBuscar = new Guna.UI2.WinForms.Guna2ImageButton();
+            txtBuscar = new Guna.UI2.WinForms.Guna2TextBox();
+            btnAgregar = new Guna.UI2.WinForms.Guna2ImageButton();
+            btnEditar = new Guna.UI2.WinForms.Guna2ImageButton();
+            btnEliminar = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2ImageButton10 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvServicios).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -188,14 +188,14 @@
             label2.TabIndex = 17;
             label2.Text = "SERVICIOS";
             // 
-            // dataGridView2
+            // dgvServicios
             // 
-            dataGridView2.BackgroundColor = SystemColors.Control;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(640, 226);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(884, 620);
-            dataGridView2.TabIndex = 18;
+            dgvServicios.BackgroundColor = SystemColors.Control;
+            dgvServicios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvServicios.Location = new Point(640, 226);
+            dgvServicios.Name = "dgvServicios";
+            dgvServicios.Size = new Size(863, 620);
+            dgvServicios.TabIndex = 18;
             // 
             // guna2ImageButton5
             // 
@@ -237,91 +237,94 @@
             guna2Button2.TextAlign = HorizontalAlignment.Left;
             guna2Button2.Click += guna2Button2_Click;
             // 
-            // guna2ImageButton4
+            // btnBuscar
             // 
-            guna2ImageButton4.BackColor = Color.Transparent;
-            guna2ImageButton4.CheckedState.ImageSize = new Size(64, 64);
-            guna2ImageButton4.HoverState.ImageSize = new Size(35, 35);
-            guna2ImageButton4.Image = (Image)resources.GetObject("guna2ImageButton4.Image");
-            guna2ImageButton4.ImageOffset = new Point(0, 0);
-            guna2ImageButton4.ImageRotate = 0F;
-            guna2ImageButton4.ImageSize = new Size(32, 32);
-            guna2ImageButton4.Location = new Point(1202, 85);
-            guna2ImageButton4.Name = "guna2ImageButton4";
-            guna2ImageButton4.PressedState.ImageSize = new Size(64, 64);
-            guna2ImageButton4.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2ImageButton4.Size = new Size(52, 46);
-            guna2ImageButton4.TabIndex = 22;
-            guna2ImageButton4.UseTransparentBackground = true;
+            btnBuscar.BackColor = Color.Transparent;
+            btnBuscar.CheckedState.ImageSize = new Size(64, 64);
+            btnBuscar.HoverState.ImageSize = new Size(35, 35);
+            btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
+            btnBuscar.ImageOffset = new Point(0, 0);
+            btnBuscar.ImageRotate = 0F;
+            btnBuscar.ImageSize = new Size(32, 32);
+            btnBuscar.Location = new Point(1202, 85);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.PressedState.ImageSize = new Size(64, 64);
+            btnBuscar.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnBuscar.Size = new Size(52, 46);
+            btnBuscar.TabIndex = 22;
+            btnBuscar.UseTransparentBackground = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
-            // guna2TextBox2
+            // txtBuscar
             // 
-            guna2TextBox2.BorderColor = Color.FromArgb(30, 111, 217);
-            guna2TextBox2.BorderRadius = 15;
-            guna2TextBox2.CustomizableEdges = customizableEdges11;
-            guna2TextBox2.DefaultText = "";
-            guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox2.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox2.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox2.Font = new Font("Segoe UI", 9F);
-            guna2TextBox2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox2.Location = new Point(893, 90);
-            guna2TextBox2.Name = "guna2TextBox2";
-            guna2TextBox2.PlaceholderForeColor = Color.Gray;
-            guna2TextBox2.PlaceholderText = "Buscar Servicios";
-            guna2TextBox2.SelectedText = "";
-            guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            guna2TextBox2.Size = new Size(303, 36);
-            guna2TextBox2.TabIndex = 21;
+            txtBuscar.BorderColor = Color.FromArgb(30, 111, 217);
+            txtBuscar.BorderRadius = 15;
+            txtBuscar.CustomizableEdges = customizableEdges11;
+            txtBuscar.DefaultText = "";
+            txtBuscar.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtBuscar.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtBuscar.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtBuscar.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtBuscar.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBuscar.Font = new Font("Segoe UI", 9F);
+            txtBuscar.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBuscar.Location = new Point(893, 90);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.PlaceholderForeColor = Color.Gray;
+            txtBuscar.PlaceholderText = "Buscar Servicios";
+            txtBuscar.SelectedText = "";
+            txtBuscar.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txtBuscar.Size = new Size(303, 36);
+            txtBuscar.TabIndex = 21;
+            txtBuscar.KeyDown += txtBuscar_KeyDown_1;
             // 
-            // guna2ImageButton7
+            // btnAgregar
             // 
-            guna2ImageButton7.CheckedState.ImageSize = new Size(64, 64);
-            guna2ImageButton7.HoverState.ImageSize = new Size(35, 35);
-            guna2ImageButton7.Image = (Image)resources.GetObject("guna2ImageButton7.Image");
-            guna2ImageButton7.ImageOffset = new Point(0, 0);
-            guna2ImageButton7.ImageRotate = 0F;
-            guna2ImageButton7.ImageSize = new Size(32, 32);
-            guna2ImageButton7.Location = new Point(658, 174);
-            guna2ImageButton7.Name = "guna2ImageButton7";
-            guna2ImageButton7.PressedState.ImageSize = new Size(64, 64);
-            guna2ImageButton7.ShadowDecoration.CustomizableEdges = customizableEdges13;
-            guna2ImageButton7.Size = new Size(52, 46);
-            guna2ImageButton7.TabIndex = 23;
-            guna2ImageButton7.Click += guna2ImageButton7_Click;
+            btnAgregar.CheckedState.ImageSize = new Size(64, 64);
+            btnAgregar.HoverState.ImageSize = new Size(35, 35);
+            btnAgregar.Image = (Image)resources.GetObject("btnAgregar.Image");
+            btnAgregar.ImageOffset = new Point(0, 0);
+            btnAgregar.ImageRotate = 0F;
+            btnAgregar.ImageSize = new Size(32, 32);
+            btnAgregar.Location = new Point(658, 174);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.PressedState.ImageSize = new Size(64, 64);
+            btnAgregar.ShadowDecoration.CustomizableEdges = customizableEdges13;
+            btnAgregar.Size = new Size(52, 46);
+            btnAgregar.TabIndex = 23;
+            btnAgregar.Click += guna2ImageButton7_Click;
             // 
-            // guna2ImageButton8
+            // btnEditar
             // 
-            guna2ImageButton8.CheckedState.ImageSize = new Size(64, 64);
-            guna2ImageButton8.HoverState.ImageSize = new Size(35, 35);
-            guna2ImageButton8.Image = (Image)resources.GetObject("guna2ImageButton8.Image");
-            guna2ImageButton8.ImageOffset = new Point(0, 0);
-            guna2ImageButton8.ImageRotate = 0F;
-            guna2ImageButton8.ImageSize = new Size(32, 32);
-            guna2ImageButton8.Location = new Point(716, 174);
-            guna2ImageButton8.Name = "guna2ImageButton8";
-            guna2ImageButton8.PressedState.ImageSize = new Size(64, 64);
-            guna2ImageButton8.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2ImageButton8.Size = new Size(52, 46);
-            guna2ImageButton8.TabIndex = 24;
-            guna2ImageButton8.Click += guna2ImageButton8_Click;
+            btnEditar.CheckedState.ImageSize = new Size(64, 64);
+            btnEditar.HoverState.ImageSize = new Size(35, 35);
+            btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
+            btnEditar.ImageOffset = new Point(0, 0);
+            btnEditar.ImageRotate = 0F;
+            btnEditar.ImageSize = new Size(32, 32);
+            btnEditar.Location = new Point(716, 174);
+            btnEditar.Name = "btnEditar";
+            btnEditar.PressedState.ImageSize = new Size(64, 64);
+            btnEditar.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnEditar.Size = new Size(52, 46);
+            btnEditar.TabIndex = 24;
+            btnEditar.Click += btnEditar_Click;
             // 
-            // guna2ImageButton9
+            // btnEliminar
             // 
-            guna2ImageButton9.CheckedState.ImageSize = new Size(64, 64);
-            guna2ImageButton9.HoverState.ImageSize = new Size(35, 35);
-            guna2ImageButton9.Image = (Image)resources.GetObject("guna2ImageButton9.Image");
-            guna2ImageButton9.ImageOffset = new Point(0, 0);
-            guna2ImageButton9.ImageRotate = 0F;
-            guna2ImageButton9.ImageSize = new Size(32, 32);
-            guna2ImageButton9.Location = new Point(774, 174);
-            guna2ImageButton9.Name = "guna2ImageButton9";
-            guna2ImageButton9.PressedState.ImageSize = new Size(64, 64);
-            guna2ImageButton9.ShadowDecoration.CustomizableEdges = customizableEdges15;
-            guna2ImageButton9.Size = new Size(52, 46);
-            guna2ImageButton9.TabIndex = 25;
+            btnEliminar.CheckedState.ImageSize = new Size(64, 64);
+            btnEliminar.HoverState.ImageSize = new Size(35, 35);
+            btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
+            btnEliminar.ImageOffset = new Point(0, 0);
+            btnEliminar.ImageRotate = 0F;
+            btnEliminar.ImageSize = new Size(32, 32);
+            btnEliminar.Location = new Point(774, 174);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.PressedState.ImageSize = new Size(64, 64);
+            btnEliminar.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            btnEliminar.Size = new Size(52, 46);
+            btnEliminar.TabIndex = 25;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // guna2ImageButton10
             // 
@@ -370,14 +373,14 @@
             BackColor = SystemColors.ButtonHighlight;
             Controls.Add(guna2ImageButton10);
             Controls.Add(guna2Button1);
-            Controls.Add(guna2ImageButton9);
-            Controls.Add(guna2ImageButton8);
-            Controls.Add(guna2ImageButton7);
-            Controls.Add(guna2ImageButton4);
-            Controls.Add(guna2TextBox2);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnEditar);
+            Controls.Add(btnAgregar);
+            Controls.Add(btnBuscar);
+            Controls.Add(txtBuscar);
             Controls.Add(guna2ImageButton5);
             Controls.Add(guna2Button2);
-            Controls.Add(dataGridView2);
+            Controls.Add(dgvServicios);
             Controls.Add(label2);
             Controls.Add(guna2ImageButton2);
             Controls.Add(guna2ImageButton1);
@@ -389,7 +392,7 @@
             Name = "UC_Inventario";
             Size = new Size(1527, 772);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvServicios).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -404,14 +407,14 @@
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton2;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton1;
         private Label label2;
-        private DataGridView dataGridView2;
+        private DataGridView dgvServicios;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton5;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton4;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox2;
-        private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton7;
-        private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton8;
-        private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton9;
+        private Guna.UI2.WinForms.Guna2ImageButton btnBuscar;
+        private Guna.UI2.WinForms.Guna2TextBox txtBuscar;
+        private Guna.UI2.WinForms.Guna2ImageButton btnAgregar;
+        private Guna.UI2.WinForms.Guna2ImageButton btnEditar;
+        private Guna.UI2.WinForms.Guna2ImageButton btnEliminar;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton10;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }

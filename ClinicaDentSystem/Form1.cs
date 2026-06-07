@@ -85,7 +85,10 @@ namespace ClinicaDentSystem
             return true;
         }
 
+        private void Login_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 
 }
