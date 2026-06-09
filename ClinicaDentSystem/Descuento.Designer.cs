@@ -55,6 +55,7 @@
             guna2ImageButton5 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             dataGridView1 = new DataGridView();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -251,11 +252,24 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
+            dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(12, 201);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(591, 237);
             dataGridView1.TabIndex = 95;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = SystemColors.ButtonHighlight;
+            label5.Font = new Font("Segoe UI Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(30, 111, 217);
+            label5.Location = new Point(12, 181);
+            label5.Name = "label5";
+            label5.Size = new Size(298, 17);
+            label5.TabIndex = 135;
+            label5.Text = "*Haga doble click en el descuento que deséa editar*";
             // 
             // Descuento
             // 
@@ -263,6 +277,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(622, 450);
+            Controls.Add(label5);
             Controls.Add(guna2ImageButton5);
             Controls.Add(guna2Button2);
             Controls.Add(label4);
@@ -278,6 +293,7 @@
             Controls.Add(guna2TextBox2);
             Name = "Descuento";
             Text = "Descuento";
+            Load += Descuento_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -298,5 +314,6 @@
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton5;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private DataGridView dataGridView1;
+        private Label label5;
     }
 }

@@ -66,6 +66,9 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             label2 = new Label();
             guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
@@ -109,6 +112,8 @@
             guna2ImageButton3 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2ImageButton4 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
+            btnAgregar = new Guna.UI2.WinForms.Guna2ImageButton();
+            guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
             guna2ContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             guna2ContainerControl2.SuspendLayout();
@@ -457,6 +462,7 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
+            dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(47, 449);
             dataGridView1.Name = "dataGridView1";
@@ -699,6 +705,7 @@
             guna2Button4.TabIndex = 50;
             guna2Button4.Text = "  FACTURAS EMITIDAS";
             guna2Button4.TextAlign = HorizontalAlignment.Left;
+            guna2Button4.Click += guna2Button4_Click_1;
             // 
             // guna2ImageButton3
             // 
@@ -756,11 +763,53 @@
             guna2Button5.TextAlign = HorizontalAlignment.Left;
             guna2Button5.Click += guna2Button5_Click;
             // 
+            // btnAgregar
+            // 
+            btnAgregar.BackColor = Color.Transparent;
+            btnAgregar.CheckedState.ImageSize = new Size(64, 64);
+            btnAgregar.HoverState.ImageSize = new Size(35, 35);
+            btnAgregar.Image = (Image)resources.GetObject("btnAgregar.Image");
+            btnAgregar.ImageOffset = new Point(0, 0);
+            btnAgregar.ImageRotate = 0F;
+            btnAgregar.ImageSize = new Size(32, 32);
+            btnAgregar.Location = new Point(1408, 27);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.PressedState.ImageSize = new Size(64, 64);
+            btnAgregar.ShadowDecoration.CustomizableEdges = customizableEdges38;
+            btnAgregar.Size = new Size(52, 46);
+            btnAgregar.TabIndex = 54;
+            btnAgregar.UseTransparentBackground = true;
+            btnAgregar.Click += btnAgregar_Click;
+            // 
+            // guna2Button6
+            // 
+            guna2Button6.BorderColor = Color.FromArgb(30, 111, 217);
+            guna2Button6.BorderRadius = 20;
+            guna2Button6.BorderThickness = 2;
+            guna2Button6.CustomizableEdges = customizableEdges39;
+            guna2Button6.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button6.FillColor = SystemColors.ButtonHighlight;
+            guna2Button6.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2Button6.ForeColor = Color.FromArgb(30, 111, 217);
+            guna2Button6.Location = new Point(1239, 27);
+            guna2Button6.Name = "guna2Button6";
+            guna2Button6.ShadowDecoration.CustomizableEdges = customizableEdges40;
+            guna2Button6.Size = new Size(235, 45);
+            guna2Button6.TabIndex = 55;
+            guna2Button6.Text = "  REPORTE DE INGRESOS";
+            guna2Button6.TextAlign = HorizontalAlignment.Left;
+            guna2Button6.Click += guna2Button6_Click;
+            // 
             // UC_Facturacion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
+            Controls.Add(btnAgregar);
+            Controls.Add(guna2Button6);
             Controls.Add(guna2ImageButton4);
             Controls.Add(guna2Button5);
             Controls.Add(guna2ImageButton3);
@@ -850,5 +899,7 @@
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton3;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton4;
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
+        private Guna.UI2.WinForms.Guna2ImageButton btnAgregar;
+        private Guna.UI2.WinForms.Guna2Button guna2Button6;
     }
 }
