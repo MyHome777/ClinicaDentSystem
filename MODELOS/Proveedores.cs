@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MODELOS
-{
-    public class Proveedores
+   public class Proveedores
     {
         private int proveedorID;
         private string nombreProveedor = string.Empty;
@@ -24,4 +22,3 @@ namespace MODELOS
         public int EstadoId { get => estadoId; set => estadoId = value; }
         public string Estado { get => estado; set => estado = value; }
     }
-}

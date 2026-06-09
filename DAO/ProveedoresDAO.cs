@@ -1,11 +1,8 @@
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using MODELOS;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAO
 {
@@ -20,10 +17,7 @@ namespace DAO
             try
             {
                 conn.AbrirConexion(out pError);
-                if (!string.IsNullOrEmpty(pError))
-                {
-                    throw new Exception(pError);
-                }
+                if (!string.IsNullOrEmpty(pError)) throw new Exception(pError);
 
                 cmd = new SqlCommand("INVENTARIO.sp_actualizar_proveedor", conn.conn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -32,10 +26,12 @@ namespace DAO
                 cmd.Parameters.AddWithValue("@Contacto", reg.Contacto);
                 cmd.Parameters.AddWithValue("@Telefono", reg.Telefono);
                 cmd.Parameters.AddWithValue("@Email", string.IsNullOrWhiteSpace(reg.Email) ? DBNull.Value : reg.Email);
-                cmd.Parameters.AddWithValue("@EstadoId", reg.EstadoId);
+                cmd.Parameters.AddWithValue("@EstadoID", reg.EstadoId);
 
-                SqlParameter msgParam = new SqlParameter("@Mensaje", SqlDbType.VarChar, 100);
-                msgParam.Direction = ParameterDirection.Output;
+                SqlParameter msgParam = new SqlParameter("@Mensaje", SqlDbType.VarChar, 100)
+                {
+                    Direction = ParameterDirection.Output
+                };
                 cmd.Parameters.Add(msgParam);
 
                 cmd.ExecuteNonQuery();
@@ -47,10 +43,7 @@ namespace DAO
                 }
 
                 conn.CerrarConexion(out string errorCerrar);
-                if (!string.IsNullOrEmpty(errorCerrar))
-                {
-                    pError = errorCerrar;
-                }
+                if (!string.IsNullOrEmpty(errorCerrar)) pError = errorCerrar;
             }
             catch (SqlException ex)
             {
@@ -59,8 +52,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                if (string.IsNullOrEmpty(pError))
-                    pError = ex.Message;
+                if (string.IsNullOrEmpty(pError)) pError = ex.Message;
                 Console.WriteLine(pError);
             }
         }
@@ -74,10 +66,7 @@ namespace DAO
             try
             {
                 conn.AbrirConexion(out pError);
-                if (!string.IsNullOrEmpty(pError))
-                {
-                    throw new Exception(pError);
-                }
+                if (!string.IsNullOrEmpty(pError)) throw new Exception(pError);
 
                 cmd = new SqlCommand("SpInsertProveedor", conn.conn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -85,10 +74,12 @@ namespace DAO
                 cmd.Parameters.AddWithValue("@Contacto", reg.Contacto);
                 cmd.Parameters.AddWithValue("@Telefono", reg.Telefono);
                 cmd.Parameters.AddWithValue("@Email", string.IsNullOrWhiteSpace(reg.Email) ? DBNull.Value : reg.Email);
-                cmd.Parameters.AddWithValue("@EstadoId", reg.EstadoId);
+                cmd.Parameters.AddWithValue("@EstadoID", reg.EstadoId);
 
-                SqlParameter msgParam = new SqlParameter("@Mensaje", SqlDbType.VarChar, 100);
-                msgParam.Direction = ParameterDirection.Output;
+                SqlParameter msgParam = new SqlParameter("@Mensaje", SqlDbType.VarChar, 100)
+                {
+                    Direction = ParameterDirection.Output
+                };
                 cmd.Parameters.Add(msgParam);
 
                 cmd.ExecuteNonQuery();
@@ -100,10 +91,7 @@ namespace DAO
                 }
 
                 conn.CerrarConexion(out string errorCerrar);
-                if (!string.IsNullOrEmpty(errorCerrar))
-                {
-                    pError = errorCerrar;
-                }
+                if (!string.IsNullOrEmpty(errorCerrar)) pError = errorCerrar;
             }
             catch (SqlException ex)
             {
@@ -112,8 +100,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                if (string.IsNullOrEmpty(pError))
-                    pError = ex.Message;
+                if (string.IsNullOrEmpty(pError)) pError = ex.Message;
                 Console.WriteLine(pError);
             }
         }
@@ -139,10 +126,7 @@ namespace DAO
             try
             {
                 conn.AbrirConexion(out pError);
-                if (!string.IsNullOrEmpty(pError))
-                {
-                    throw new Exception(pError);
-                }
+                if (!string.IsNullOrEmpty(pError)) throw new Exception(pError);
 
                 cmd = new SqlCommand("SpSelectAllProveedores", conn.conn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -150,27 +134,41 @@ namespace DAO
 
                 while (dr.Read())
                 {
-                    Proveedores proveedor = new Proveedores();
-                    proveedor.ProveedorID = dr.GetInt32(0);
-                    proveedor.NombreProveedor = dr.GetString(1);
-                    proveedor.Contacto = dr.GetString(2);
-                    proveedor.Telefono = dr.GetString(3);
-                    proveedor.Email = dr.IsDBNull(4) ? string.Empty : dr.GetString(4);
-                    proveedor.EstadoId = dr.GetInt32(5);
-                    proveedor.Estado = dr.GetString(6);
+                    // 🌟 OBTENER EL ÍNDICE REAL DE LAS COLUMNAS (Evita errores de Case Sensitive o nombres exactos)
+                    int idxProveedorID = dr.GetOrdinal("ProveedorID");
+                    int idxNombre = dr.GetOrdinal("NombreProveedor");
+                    int idxContacto = dr.GetOrdinal("Contacto");
+                    int idxTelefono = dr.GetOrdinal("Telefono");
+                    int idxEmail = dr.GetOrdinal("Email");
+
+                    // Buscamos la columna del Estado de forma segura
+                    int idxEstadoId = -1;
+                    try { idxEstadoId = dr.GetOrdinal("IdEstado"); }
+                    catch { try { idxEstadoId = dr.GetOrdinal("EstadoID"); } catch { } }
+
+                    int idxEstadoTexto = -1;
+                    try { idxEstadoTexto = dr.GetOrdinal("Estado"); } catch { }
+
+                    Proveedores proveedor = new Proveedores
+                    {
+                        ProveedorID = !dr.IsDBNull(idxProveedorID) ? dr.GetInt32(idxProveedorID) : 0,
+                        NombreProveedor = !dr.IsDBNull(idxNombre) ? dr.GetString(idxNombre) : string.Empty,
+                        Contacto = !dr.IsDBNull(idxContacto) ? dr.GetString(idxContacto) : string.Empty,
+                        Telefono = !dr.IsDBNull(idxTelefono) ? dr.GetString(idxTelefono) : string.Empty,
+                        Email = !dr.IsDBNull(idxEmail) ? dr.GetString(idxEmail) : string.Empty,
+
+                        // Asignamos usando los índices numéricos seguros obtenidos arriba
+                        EstadoId = (idxEstadoId != -1 && !dr.IsDBNull(idxEstadoId)) ? Convert.ToInt32(dr.GetValue(idxEstadoId)) : 0,
+                        Estado = (idxEstadoTexto != -1 && !dr.IsDBNull(idxEstadoTexto)) ? dr.GetString(idxEstadoTexto) : string.Empty
+                    };
+
                     proveedores.Add(proveedor);
                 }
 
-                if (!dr.IsClosed)
-                {
-                    dr.Close();
-                }
+                if (!dr.IsClosed) dr.Close();
 
                 conn.CerrarConexion(out string errorCerrar);
-                if (!string.IsNullOrEmpty(errorCerrar))
-                {
-                    pError = errorCerrar;
-                }
+                if (!string.IsNullOrEmpty(errorCerrar)) pError = errorCerrar;
             }
             catch (SqlException ex)
             {
@@ -179,14 +177,12 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                if (string.IsNullOrEmpty(pError))
-                    pError = ex.Message;
+                if (string.IsNullOrEmpty(pError)) pError = ex.Message;
                 Console.WriteLine(pError);
             }
 
             return proveedores;
         }
-
         public DataTable ObtenerEstados(out string pError)
         {
             pError = string.Empty;
@@ -198,25 +194,16 @@ namespace DAO
             try
             {
                 conn.AbrirConexion(out pError);
-                if (!string.IsNullOrEmpty(pError))
-                {
-                    throw new Exception(pError);
-                }
+                if (!string.IsNullOrEmpty(pError)) throw new Exception(pError);
 
-                cmd = new SqlCommand("SELECT EstadoId, Estado FROM INVENTARIO.ESTADO ORDER BY EstadoId", conn.conn);
+                cmd = new SqlCommand("SELECT EstadoID, Estado FROM INVENTARIO.ESTADO ORDER BY EstadoID", conn.conn);
                 dr = cmd.ExecuteReader();
                 estados.Load(dr);
 
-                if (!dr.IsClosed)
-                {
-                    dr.Close();
-                }
+                if (!dr.IsClosed) dr.Close();
 
                 conn.CerrarConexion(out string errorCerrar);
-                if (!string.IsNullOrEmpty(errorCerrar))
-                {
-                    pError = errorCerrar;
-                }
+                if (!string.IsNullOrEmpty(errorCerrar)) pError = errorCerrar;
             }
             catch (SqlException ex)
             {
@@ -225,8 +212,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                if (string.IsNullOrEmpty(pError))
-                    pError = ex.Message;
+                if (string.IsNullOrEmpty(pError)) pError = ex.Message;
                 Console.WriteLine(pError);
             }
 

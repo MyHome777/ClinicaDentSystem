@@ -190,9 +190,9 @@
             lblNombre.Font = new Font("Nirmala UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNombre.Location = new Point(74, 128);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(48, 15);
+            lblNombre.Size = new Size(115, 15);
             lblNombre.TabIndex = 60;
-            lblNombre.Text = "Cristian";
+            lblNombre.Text = "Nombre de Usuario";
             lblNombre.Click += lblNombre_Click;
             // 
             // guna2Separator3
@@ -229,9 +229,9 @@
             lblRol.AutoSize = true;
             lblRol.Location = new Point(74, 143);
             lblRol.Name = "lblRol";
-            lblRol.Size = new Size(83, 15);
+            lblRol.Size = new Size(24, 15);
             lblRol.TabIndex = 55;
-            lblRol.Text = "Administrador";
+            lblRol.Text = "Rol";
             // 
             // label6
             // 
