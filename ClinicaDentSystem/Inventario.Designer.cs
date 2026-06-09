@@ -623,6 +623,7 @@
             guna2TextBox9.Size = new Size(141, 36);
             guna2TextBox9.TabIndex = 111;
             guna2TextBox9.TextAlign = HorizontalAlignment.Center;
+            guna2TextBox9.TextChanged += guna2TextBox9_TextChanged;
             // 
             // guna2ImageButton2
             // 
@@ -640,6 +641,7 @@
             guna2ImageButton2.Size = new Size(42, 42);
             guna2ImageButton2.TabIndex = 114;
             guna2ImageButton2.UseTransparentBackground = true;
+            guna2ImageButton2.Click += guna2ImageButton2_Click_1;
             // 
             // guna2Button2
             // 
@@ -661,6 +663,7 @@
             guna2Button2.TabIndex = 113;
             guna2Button2.Text = "  GUARDAR";
             guna2Button2.TextAlign = HorizontalAlignment.Left;
+            guna2Button2.Click += guna2Button2_Click_1;
             // 
             // Inventario
             // 
@@ -708,10 +711,10 @@
             Controls.Add(label5);
             Name = "Inventario";
             Text = "Inventario";
+            Load += Inventario_Load;
             ResumeLayout(false);
             PerformLayout();
         }
-
         #endregion
 
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox3;

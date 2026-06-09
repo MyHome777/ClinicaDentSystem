@@ -54,6 +54,8 @@ namespace DAO
                 while (dr.Read())
                 {
                     usuario = new Usuario();
+                    if (dr["UsuarioId"] != DBNull.Value)
+                        usuario.UsuarioId = Convert.ToInt32(dr["UsuarioId"]);
                     usuario.NombreUsuario = dr["NombreUsuario"].ToString() ?? string.Empty;
                     usuario.Clave = dr["Clave"].ToString() ?? string.Empty;
                     usuario.NombreRol = dr["NombreRol"]?.ToString() ?? string.Empty;

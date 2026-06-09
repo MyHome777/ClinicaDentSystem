@@ -3,10 +3,7 @@ using MODELOS;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+                                                                                                                                                                                                                                                                                                                                                                                                                            
 namespace DAO
 {
     public class CategoriasDAO : AbstractDAO<Categorias>
@@ -20,10 +17,7 @@ namespace DAO
             try
             {
                 conn.AbrirConexion(out pError);
-                if (!string.IsNullOrEmpty(pError))
-                {
-                    throw new Exception(pError);
-                }
+                if (!string.IsNullOrEmpty(pError)) throw new Exception(pError);
 
                 cmd = new SqlCommand("INVENTARIO.sp_actualizar_categoria", conn.conn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -32,8 +26,10 @@ namespace DAO
                 cmd.Parameters.AddWithValue("@Descripcion", reg.Descripcion);
                 cmd.Parameters.AddWithValue("@EstadoID", reg.EstadoId);
 
-                SqlParameter msgParam = new SqlParameter("@Mensaje", SqlDbType.VarChar, 100);
-                msgParam.Direction = ParameterDirection.Output;
+                SqlParameter msgParam = new SqlParameter("@Mensaje", SqlDbType.VarChar, 100)
+                {
+                    Direction = ParameterDirection.Output
+                };
                 cmd.Parameters.Add(msgParam);
 
                 cmd.ExecuteNonQuery();
@@ -41,14 +37,11 @@ namespace DAO
 
                 if (string.IsNullOrWhiteSpace(pError))
                 {
-                    pError = "No se recibio respuesta del procedimiento INVENTARIO.sp_actualizar_categoria.";
+                    pError = "No se recibió respuesta del procedimiento INVENTARIO.sp_actualizar_categoria.";
                 }
 
                 conn.CerrarConexion(out string errorCerrar);
-                if (!string.IsNullOrEmpty(errorCerrar))
-                {
-                    pError = errorCerrar;
-                }
+                if (!string.IsNullOrEmpty(errorCerrar)) pError = errorCerrar;
             }
             catch (SqlException ex)
             {
@@ -57,8 +50,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                if (string.IsNullOrEmpty(pError))
-                    pError = ex.Message;
+                if (string.IsNullOrEmpty(pError)) pError = ex.Message;
                 Console.WriteLine(pError);
             }
         }
@@ -72,10 +64,7 @@ namespace DAO
             try
             {
                 conn.AbrirConexion(out pError);
-                if (!string.IsNullOrEmpty(pError))
-                {
-                    throw new Exception(pError);
-                }
+                if (!string.IsNullOrEmpty(pError)) throw new Exception(pError);
 
                 cmd = new SqlCommand("INVENTARIO.sp_crear_categoria", conn.conn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -83,8 +72,10 @@ namespace DAO
                 cmd.Parameters.AddWithValue("@Descripcion", reg.Descripcion);
                 cmd.Parameters.AddWithValue("@EstadoID", reg.EstadoId);
 
-                SqlParameter msgParam = new SqlParameter("@Mensaje", SqlDbType.VarChar, 100);
-                msgParam.Direction = ParameterDirection.Output;
+                SqlParameter msgParam = new SqlParameter("@Mensaje", SqlDbType.VarChar, 100)
+                {
+                    Direction = ParameterDirection.Output
+                };
                 cmd.Parameters.Add(msgParam);
 
                 cmd.ExecuteNonQuery();
@@ -92,28 +83,22 @@ namespace DAO
 
                 if (string.IsNullOrWhiteSpace(pError))
                 {
-                    pError = "No se recibio respuesta del procedimiento INVENTARIO.sp_crear_categoria.";
+                    pError = "No se recibió respuesta del procedimiento INVENTARIO.sp_crear_categoria.";
                 }
 
                 conn.CerrarConexion(out string errorCerrar);
-                if (!string.IsNullOrEmpty(errorCerrar))
-                {
-                    pError = errorCerrar;
-                }
+                if (!string.IsNullOrEmpty(errorCerrar)) pError = errorCerrar;
             }
             catch (SqlException ex)
             {
                 pError = ex.Message;
                 Console.WriteLine(pError);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                if (string.IsNullOrEmpty(pError))
-                    pError = ex.Message;
+                if (string.IsNullOrEmpty(pError)) pError = ex.Message;
                 Console.WriteLine(pError);
             }
-
-
         }
 
         public override Categorias ObtenerPorId(int id, out string pError)
@@ -132,12 +117,12 @@ namespace DAO
             Conexion conn = new Conexion();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader dr;
-            List<Categorias> categorias = new List<Categorias>();
+            List<Categorias> categorias = new List<Categorias>(); // 🌟 Declarada como 'categorias'
+
             try
             {
                 conn.AbrirConexion(out pError);
-                if (!string.IsNullOrEmpty(pError))
-                    throw new Exception(pError);
+                if (!string.IsNullOrEmpty(pError)) throw new Exception(pError);
 
                 cmd = new SqlCommand("INVENTARIO.sp_listar_categorias", conn.conn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -145,19 +130,21 @@ namespace DAO
 
                 while (dr.Read())
                 {
-                    Categorias cat = new Categorias();
-                    cat.CategoriaID = dr.GetInt32(0);
-                    cat.Nombre = dr.GetString(1);
-                    cat.Descripcion = dr.IsDBNull(2) ? string.Empty : dr.GetString(2);
-                    cat.EstadoId = dr.GetInt32(3);
-                    cat.Estado = dr.GetString(4);
-                    categorias.Add(cat);
+                    Categorias categoria = new Categorias
+                    {
+                        CategoriaID = dr["CategoriaID"] != DBNull.Value ? Convert.ToInt32(dr["CategoriaID"]) : 0,
+                        Nombre = dr["Nombre"] != DBNull.Value ? dr["Nombre"].ToString() : string.Empty,
+                        Descripcion = dr["Descripcion"] != DBNull.Value ? dr["Descripcion"].ToString() : string.Empty,
+                        EstadoId = dr["EstadoID"] != DBNull.Value ? Convert.ToInt32(dr["EstadoID"]) : 0,
+                        Estado = dr["Estado"] != DBNull.Value ? dr["Estado"].ToString() : string.Empty
+                    };
+                    categorias.Add(categoria); // 🌟 ¡CORREGIDO! Ahora usa 'categorias.Add' en lugar de 'lista.Add'
                 }
 
                 if (!dr.IsClosed) dr.Close();
+
                 conn.CerrarConexion(out pError);
-                if (!string.IsNullOrEmpty(pError))
-                    throw new Exception(pError);
+                if (!string.IsNullOrEmpty(pError)) throw new Exception(pError);
             }
             catch (SqlException ex)
             {
@@ -166,11 +153,10 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                if (string.IsNullOrEmpty(pError))
-                    pError = ex.Message;
+                if (string.IsNullOrEmpty(pError)) pError = ex.Message;
                 Console.WriteLine(pError);
             }
-            return categorias;
+            return categorias; // 🌟 Retorna 'categorias' correctamente
         }
     }
 }

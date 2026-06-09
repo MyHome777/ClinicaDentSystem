@@ -8,13 +8,14 @@ namespace Modelos
 {
     public class Usuario
     {
+        int _usuarioId;
         string _nombreusuario = string.Empty;
         string _clave = string.Empty;
-        int _idEmpleado;
         string _nombreRol = string.Empty;
 
+        public int UsuarioId { get => _usuarioId; set => _usuarioId = value; }
         public string NombreUsuario { get => _nombreusuario; set => _nombreusuario = value; }
-        public int IdEmpleado { get => _idEmpleado; set => _idEmpleado = value; }
+        public int IdEmpleado { get => _usuarioId; set => _usuarioId = value; }
         public string Clave { get => _clave; set => _clave = value; }
         public string NombreRol { get => _nombreRol; set => _nombreRol = value; }
     }

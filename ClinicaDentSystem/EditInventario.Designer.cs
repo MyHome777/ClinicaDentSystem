@@ -488,6 +488,7 @@
             Controls.Add(guna2TextBox2);
             Name = "EditInventario";
             Text = "EditInventario";
+            Load += EditInventario_Load;
             ResumeLayout(false);
             PerformLayout();
         }
