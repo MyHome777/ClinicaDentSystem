@@ -259,7 +259,7 @@ namespace ClinicaDentSystem
             dataGridView1.AutoGenerateColumns = false;
             return new Proveedores
             {
-                
+
                 NombreProveedor = guna2TextBox2.Text.Trim(),
                 Contacto = guna2TextBox3.Text.Trim(),
                 Telefono = guna2TextBox4.Text.Trim(),
@@ -288,6 +288,11 @@ namespace ClinicaDentSystem
         }
 
         private void Proveedor_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
