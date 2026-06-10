@@ -11,6 +11,7 @@ namespace MODELOS
         private int      productoID;
         private int      categoriaID;
         private int      compraID;
+        private int      ventaID;
         private string   categoria       = string.Empty;
         private string   nombreProducto   = string.Empty;
         private string   descripcion      = string.Empty;
@@ -25,6 +26,7 @@ namespace MODELOS
         public int      ProductoID        { get => productoID;       set => productoID = value; }
         public int      CategoriaID       { get => categoriaID;      set => categoriaID = value; }
         public int      CompraID          { get => compraID;         set => compraID = value; }
+        public int      VentaID           { get => ventaID;          set => ventaID = value; }
         public string   Categoria         { get => categoria;        set => categoria = value; }
         public string   NombreProducto    { get => nombreProducto;   set => nombreProducto = value; }
         public string   Descripcion       { get => descripcion;      set => descripcion = value; }

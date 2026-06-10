@@ -20,7 +20,6 @@ namespace ClinicaDentSystem
         private readonly ProveedoresDAO _provDAO = new ProveedoresDAO();
         private readonly CompraDAO _compraDAO = new CompraDAO();
         private readonly DetalleCompraDAO _detDAO = new DetalleCompraDAO();
-        // 🌟 Instancia para traer los productos al DataGridView
         private readonly ProductoDAO _productoDAO = new ProductoDAO();
         public event EventHandler? InventarioGuardado;
         private bool _modoEdicion;
@@ -382,6 +381,11 @@ namespace ClinicaDentSystem
         private void guna2Button2_Click_1(object? sender, EventArgs e)
         {
             guna2Button2_Click(this, e);
+        }
+
+        private void guna2ComboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

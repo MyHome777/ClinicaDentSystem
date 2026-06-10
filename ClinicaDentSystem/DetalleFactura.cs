@@ -10,6 +10,7 @@ namespace ClinicaDentSystem
         private DataTable _detalle = new DataTable();
         private int _facturaID;
         private string _estado = string.Empty;
+        private string _tituloDetalle = "Detalle de factura";
 
         public DetalleFactura()
         {
@@ -28,6 +29,12 @@ namespace ClinicaDentSystem
             CargarDetalle(facturaID, detalle, estado);
         }
 
+        public DetalleFactura(int facturaID, DataTable detalle, string estado, string tituloDetalle) : this()
+        {
+            _tituloDetalle = string.IsNullOrWhiteSpace(tituloDetalle) ? _tituloDetalle : tituloDetalle;
+            CargarDetalle(facturaID, detalle, estado);
+        }
+
         public void CargarDetalle(int facturaID, DataTable detalle)
         {
             CargarDetalle(facturaID, detalle, _estado);
@@ -38,7 +45,7 @@ namespace ClinicaDentSystem
             _facturaID = facturaID;
             _detalle = detalle;
             _estado = estado ?? string.Empty;
-            lblTitulo.Text = $"Detalle de factura #{facturaID}";
+            lblTitulo.Text = $"{_tituloDetalle} #{facturaID}";
             dgvDetalle.DataSource = _detalle;
             lblTotal.Text = $"Total detalle: {FormatearMoneda(CalcularTotalDetalle(_detalle))}";
             ActualizarBotonPago();

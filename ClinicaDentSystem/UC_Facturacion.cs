@@ -186,6 +186,7 @@ namespace ClinicaDentSystem
             guna2ComboBox3.DataSource = usuarios;
             guna2ComboBox3.DisplayMember = "Usuario";
             guna2ComboBox3.ValueMember = "UsuarioId";
+            guna2ComboBox3.Enabled = false;
 
             int usuarioActivoId = Program.UsuarioActivo?.UsuarioId ?? 0;
             if (usuarioActivoId > 0)

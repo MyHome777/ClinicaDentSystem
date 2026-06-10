@@ -90,7 +90,7 @@ namespace DAO
                 {
                     Producto p = new Producto();
                     p.ProductoID = dr.GetInt32(dr.GetOrdinal("ProductoID"));
-                    p.CompraID = dr.IsDBNull(dr.GetOrdinal("CompraID")) ? 0 : dr.GetInt32(dr.GetOrdinal("CompraID"));
+                    p.VentaID = ObtenerEnteroOpcional(dr, "VentaID");
                     p.Categoria = dr.IsDBNull(dr.GetOrdinal("Categoria")) ? string.Empty : dr.GetString(dr.GetOrdinal("Categoria"));
                     p.NombreProducto = dr.IsDBNull(dr.GetOrdinal("NombreProducto")) ? string.Empty : dr.GetString(dr.GetOrdinal("NombreProducto"));
                     p.Descripcion = dr.IsDBNull(dr.GetOrdinal("Descripcion")) ? string.Empty : dr.GetString(dr.GetOrdinal("Descripcion"));
@@ -111,6 +111,19 @@ namespace DAO
             catch (Exception ex)    { if (string.IsNullOrEmpty(pError)) pError = ex.Message; Console.WriteLine(pError); }
 
             return lista;
+        }
+
+        private static int ObtenerEnteroOpcional(SqlDataReader dr, string columna)
+        {
+            try
+            {
+                int ordinal = dr.GetOrdinal(columna);
+                return dr.IsDBNull(ordinal) ? 0 : Convert.ToInt32(dr.GetValue(ordinal));
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return 0;
+            }
         }
 
         public override void ActualizarRegistro(Producto reg, out string pError)

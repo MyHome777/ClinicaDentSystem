@@ -21,9 +21,8 @@ namespace DAO
 
             if (con != null)
             {
-                string sql = "SELECT ServicioID, NombreServicio, Descripcion, Precio, EstadoID FROM CLINICO.SERVICIOS";
-
-                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlCommand cmd = new SqlCommand("dbo.SpReadServicio", con);
+                cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 conexion.CerrarConexion(out error);
@@ -99,12 +98,23 @@ namespace DAO
 
             if (con != null)
             {
-                string sql = "DELETE FROM CLINICO.SERVICIOS WHERE ServicioID = @id";
-                SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@id", id);
+                SqlCommand cmd = new SqlCommand("dbo.SpDeleteServicio", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ServicioID", id);
+                SqlParameter msgParam = new SqlParameter("@Mensaje", SqlDbType.VarChar, 100)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(msgParam);
 
                 cmd.ExecuteNonQuery();
+                string mensaje = msgParam.Value?.ToString() ?? string.Empty;
                 conexion.CerrarConexion(out error);
+
+                if (mensaje.StartsWith("Error", StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new Exception(mensaje);
+                }
             }
         }
         public DataTable Buscar(string texto)
@@ -117,10 +127,9 @@ namespace DAO
             {
                 try
                 {
-                    string sql = "SELECT ServicioID, NombreServicio, Descripcion, Precio, EstadoID FROM CLINICO.SERVICIOS WHERE NombreServicio LIKE @texto OR Descripcion LIKE @texto";
-
-                    SqlCommand cmd = new SqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("@texto", "%" + texto + "%");
+                    SqlCommand cmd = new SqlCommand("dbo.SpSearchServicio", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Texto", texto);
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dt);

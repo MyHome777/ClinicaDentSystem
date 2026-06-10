@@ -16,6 +16,8 @@ namespace ClinicaDentSystem
         {
             InitializeComponent();
             ResponsiveLayout.Configure(this);
+            guna2Button3.Click += btnFacturasCompra_Click;
+            guna2ImageButton4.Click += btnFacturasCompra_Click;
             CargarDatos();
             CargarInventario();
         }
@@ -28,18 +30,7 @@ namespace ClinicaDentSystem
                 DataTable dt = dao.Listar();
 
                 dgvServicios.DataSource = dt;
-
-                if (dgvServicios.Columns["ServicioID"] != null)
-                    dgvServicios.Columns["ServicioID"].Visible = false;
-
-                if (dgvServicios.Columns["EstadoID"] != null)
-                    dgvServicios.Columns["EstadoID"].Visible = false;
-
-                if (dgvServicios.Columns.Contains("NombreServicio"))
-                    dgvServicios.Columns["NombreServicio"].HeaderText = "Nombre del Servicio";
-
-                if (dgvServicios.Columns.Contains("Precio"))
-                    dgvServicios.Columns["Precio"].HeaderText = "Precio ($)";
+                ConfigurarGridServicios();
             }
             catch (Exception ex)
             {
@@ -103,20 +94,23 @@ namespace ClinicaDentSystem
                     dataGridView1.Columns["EstadoID"].Visible = false;
 
                 if (dataGridView1.Columns["CompraID"] != null)
+                    dataGridView1.Columns["CompraID"].Visible = false;
+
+                if (dataGridView1.Columns["VentaID"] != null)
                 {
-                    dataGridView1.Columns["CompraID"].Visible = true;
-                    dataGridView1.Columns["CompraID"].DisplayIndex = 0;
-                    dataGridView1.Columns["CompraID"].HeaderText = "Compra ID";
+                    dataGridView1.Columns["VentaID"].Visible = true;
+                    dataGridView1.Columns["VentaID"].DisplayIndex = 0;
+                    dataGridView1.Columns["VentaID"].HeaderText = "Venta ID";
                 }
 
                 if (dataGridView1.Columns.Contains("NombreProducto"))
-                    dataGridView1.Columns["NombreProducto"].HeaderText = "Nombre del Producto";
+                    dataGridView1.Columns["NombreProducto"].HeaderText = "Producto";
 
                 if (dataGridView1.Columns.Contains("UnidadMedida"))
                     dataGridView1.Columns["UnidadMedida"].HeaderText = "Unidad";
 
                 if (dataGridView1.Columns.Contains("PrecioUnitario"))
-                    dataGridView1.Columns["PrecioUnitario"].HeaderText = "Precio Unitario";
+                    dataGridView1.Columns["PrecioUnitario"].HeaderText = "Precio";
 
                 if (dataGridView1.Columns.Contains("FechaVencimiento"))
                     dataGridView1.Columns["FechaVencimiento"].HeaderText = "Vencimiento";
@@ -147,7 +141,7 @@ namespace ClinicaDentSystem
                     productos = productos
                         .Where(p =>
                             p.ProductoID.ToString().Contains(criterio) ||
-                            (p.CompraID > 0 && p.CompraID.ToString().Contains(criterio)) ||
+                            (p.VentaID > 0 && p.VentaID.ToString().Contains(criterio)) ||
                             (p.Categoria ?? string.Empty).ToLowerInvariant().Contains(criterio) ||
                             (p.NombreProducto ?? string.Empty).ToLowerInvariant().Contains(criterio) ||
                             (p.Descripcion ?? string.Empty).ToLowerInvariant().Contains(criterio) ||
@@ -170,20 +164,23 @@ namespace ClinicaDentSystem
                     dataGridView1.Columns["EstadoID"].Visible = false;
 
                 if (dataGridView1.Columns["CompraID"] != null)
+                    dataGridView1.Columns["CompraID"].Visible = false;
+
+                if (dataGridView1.Columns["VentaID"] != null)
                 {
-                    dataGridView1.Columns["CompraID"].Visible = true;
-                    dataGridView1.Columns["CompraID"].DisplayIndex = 0;
-                    dataGridView1.Columns["CompraID"].HeaderText = "Compra ID";
+                    dataGridView1.Columns["VentaID"].Visible = true;
+                    dataGridView1.Columns["VentaID"].DisplayIndex = 0;
+                    dataGridView1.Columns["VentaID"].HeaderText = "Venta ID";
                 }
 
                 if (dataGridView1.Columns.Contains("NombreProducto"))
-                    dataGridView1.Columns["NombreProducto"].HeaderText = "Nombre del Producto";
+                    dataGridView1.Columns["NombreProducto"].HeaderText = "Producto";
 
                 if (dataGridView1.Columns.Contains("UnidadMedida"))
                     dataGridView1.Columns["UnidadMedida"].HeaderText = "Unidad";
 
                 if (dataGridView1.Columns.Contains("PrecioUnitario"))
-                    dataGridView1.Columns["PrecioUnitario"].HeaderText = "Precio Unitario";
+                    dataGridView1.Columns["PrecioUnitario"].HeaderText = "Precio";
 
                 if (dataGridView1.Columns.Contains("FechaVencimiento"))
                     dataGridView1.Columns["FechaVencimiento"].HeaderText = "Vencimiento";
@@ -191,6 +188,27 @@ namespace ClinicaDentSystem
             catch (Exception ex)
             {
                 MessageBox.Show("Error al buscar inventario: " + ex.Message);
+            }
+        }
+
+        private void ConfigurarGridServicios()
+        {
+            if (dgvServicios.Columns["ServicioID"] != null)
+                dgvServicios.Columns["ServicioID"].Visible = false;
+
+            if (dgvServicios.Columns["EstadoID"] != null)
+                dgvServicios.Columns["EstadoID"].Visible = false;
+
+            if (dgvServicios.Columns.Contains("NombreServicio"))
+                dgvServicios.Columns["NombreServicio"].HeaderText = "Nombre del Servicio";
+
+            if (dgvServicios.Columns.Contains("Precio"))
+                dgvServicios.Columns["Precio"].HeaderText = "Precio ($)";
+
+            if (dgvServicios.Columns.Contains("Estado"))
+            {
+                dgvServicios.Columns["Estado"].HeaderText = "Estado";
+                dgvServicios.Columns["Estado"].DisplayIndex = dgvServicios.Columns.Count - 1;
             }
         }
 
@@ -242,7 +260,7 @@ namespace ClinicaDentSystem
                 return;
             }
 
-            Inventario form = new Inventario();
+            EditInventario form = new EditInventario();
             form.CargarDatosEdicion(producto);
             form.InventarioGuardado += (_, __) => CargarInventario();
             form.ShowDialog();
@@ -265,7 +283,7 @@ namespace ClinicaDentSystem
         {
             if (dgvServicios.CurrentRow != null)
             {
-                DialogResult confirmacion = MessageBox.Show("¿Está seguro de eliminar este servicio?",
+                DialogResult confirmacion = MessageBox.Show("¿Está seguro de inactivar este servicio?",
                                                             "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (confirmacion == DialogResult.Yes)
@@ -276,11 +294,11 @@ namespace ClinicaDentSystem
                         DAO.ServiciosDAO dao = new DAO.ServiciosDAO();
                         dao.Eliminar(id);
                         CargarDatos();
-                        MessageBox.Show("Servicio eliminado correctamente.");
+                        MessageBox.Show("Servicio inactivado correctamente.");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al eliminar: " + ex.Message);
+                        MessageBox.Show("Error al inactivar: " + ex.Message);
                     }
                 }
             }
@@ -304,9 +322,7 @@ namespace ClinicaDentSystem
             DataTable dt = dao.Buscar(texto);
 
             dgvServicios.DataSource = dt;
-
-            if (dgvServicios.Columns["ServicioID"] != null) dgvServicios.Columns["ServicioID"].Visible = false;
-            if (dgvServicios.Columns["EstadoID"] != null) dgvServicios.Columns["EstadoID"].Visible = false;
+            ConfigurarGridServicios();
         }
 
         private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
@@ -358,6 +374,12 @@ namespace ClinicaDentSystem
             proveedor.Show();
         }
 
+        private void btnFacturasCompra_Click(object? sender, EventArgs e)
+        {
+            using FacturaCompra facturaCompra = new FacturaCompra();
+            facturaCompra.ShowDialog(this);
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -397,6 +419,11 @@ namespace ClinicaDentSystem
             {
                 MessageBox.Show("Por favor, seleccione un producto para eliminar.");
             }
+        }
+
+        private void UC_Inventario_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

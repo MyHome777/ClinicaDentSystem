@@ -9,6 +9,13 @@ namespace ClinicaDentSystem
         private readonly PrintDocument _documento = new PrintDocument();
         private DataRow? _factura;
         private DataTable _detalle = new DataTable();
+        private string _tituloDocumento = "Factura emitida";
+        private string _tituloVentana = "Vista previa de factura";
+        private string _terceroEtiqueta = "Paciente";
+        private string _terceroColumna = "Paciente";
+        private string _responsableEtiqueta = "Facturador";
+        private string _responsableColumna = "Facturador";
+        private bool _mostrarDescuento = true;
 
         public FacturaImpresionPreview()
         {
@@ -22,12 +29,33 @@ namespace ClinicaDentSystem
             CargarFactura(factura, detalle);
         }
 
+        public FacturaImpresionPreview(
+            DataRow factura,
+            DataTable detalle,
+            string tituloDocumento,
+            string tituloVentana,
+            string terceroEtiqueta,
+            string terceroColumna,
+            string responsableEtiqueta,
+            string responsableColumna,
+            bool mostrarDescuento) : this()
+        {
+            _tituloDocumento = tituloDocumento;
+            _tituloVentana = tituloVentana;
+            _terceroEtiqueta = terceroEtiqueta;
+            _terceroColumna = terceroColumna;
+            _responsableEtiqueta = responsableEtiqueta;
+            _responsableColumna = responsableColumna;
+            _mostrarDescuento = mostrarDescuento;
+            CargarFactura(factura, detalle);
+        }
+
         public void CargarFactura(DataRow factura, DataTable detalle)
         {
             _factura = factura;
             _detalle = detalle;
-            Text = $"Vista previa - Factura #{factura["FacturaID"]}";
-            lblTitulo.Text = $"Vista previa de factura #{factura["FacturaID"]}";
+            Text = $"{_tituloVentana} - Factura #{ObtenerValor(factura, "FacturaID")}";
+            lblTitulo.Text = $"{_tituloVentana} #{ObtenerValor(factura, "FacturaID")}";
             printPreviewControl1.InvalidatePreview();
         }
 
@@ -56,7 +84,7 @@ namespace ClinicaDentSystem
             DibujarFactura(e.Graphics, _factura, _detalle);
         }
 
-        private static void DibujarFactura(Graphics g, DataRow factura, DataTable detalle)
+        private void DibujarFactura(Graphics g, DataRow factura, DataTable detalle)
         {
             float y = 60;
             float x = 60;
@@ -65,17 +93,17 @@ namespace ClinicaDentSystem
             using Font subtitulo = new Font("Segoe UI", 11, FontStyle.Bold);
             using Font normal = new Font("Segoe UI", 10);
 
-            g.DrawString("Factura emitida", titulo, Brushes.Black, x, y);
+            g.DrawString(_tituloDocumento, titulo, Brushes.Black, x, y);
             y += 42;
-            g.DrawString($"Factura #: {factura["FacturaID"]}", normal, Brushes.Black, x, y);
+            g.DrawString($"Factura #: {ObtenerValor(factura, "FacturaID")}", normal, Brushes.Black, x, y);
             y += 24;
             g.DrawString($"Fecha: {Convert.ToDateTime(factura["FechaEmision"]):dd/MM/yyyy HH:mm}", normal, Brushes.Black, x, y);
             y += 24;
-            g.DrawString($"Paciente: {factura["Paciente"]}", normal, Brushes.Black, x, y);
+            g.DrawString($"{_terceroEtiqueta}: {ObtenerValor(factura, _terceroColumna)}", normal, Brushes.Black, x, y);
             y += 24;
-            g.DrawString($"Facturador: {factura["Facturador"]}", normal, Brushes.Black, x, y);
+            g.DrawString($"{_responsableEtiqueta}: {ObtenerValor(factura, _responsableColumna)}", normal, Brushes.Black, x, y);
             y += 24;
-            g.DrawString($"Estado: {factura["Estado"]}", normal, Brushes.Black, x, y);
+            g.DrawString($"Estado: {ObtenerValor(factura, "Estado")}", normal, Brushes.Black, x, y);
             y += 38;
 
             g.DrawString("Detalle", subtitulo, Brushes.Black, x, y);
@@ -90,8 +118,11 @@ namespace ClinicaDentSystem
 
             y += 28;
             g.DrawString($"Subtotal: {FormatearMoneda(Convert.ToDecimal(factura["Subtotal"]))}", normal, Brushes.Black, x, y);
-            y += 24;
-            g.DrawString($"Descuento: {Convert.ToDecimal(factura["DescuentoPorcentaje"]):0.00}%", normal, Brushes.Black, x, y);
+            if (_mostrarDescuento)
+            {
+                y += 24;
+                g.DrawString($"Descuento: {Convert.ToDecimal(factura["DescuentoPorcentaje"]):0.00}%", normal, Brushes.Black, x, y);
+            }
             y += 24;
             g.DrawString($"Total: {FormatearMoneda(Convert.ToDecimal(factura["Total"]))}", subtitulo, Brushes.Black, x, y);
         }
@@ -99,6 +130,14 @@ namespace ClinicaDentSystem
         private static string FormatearMoneda(decimal valor)
         {
             return "$" + valor.ToString("0.00", CultureInfo.InvariantCulture);
+        }
+
+        private static string ObtenerValor(DataRow fila, string columna)
+        {
+            if (!fila.Table.Columns.Contains(columna) || fila[columna] == DBNull.Value)
+                return string.Empty;
+
+            return fila[columna]?.ToString() ?? string.Empty;
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)

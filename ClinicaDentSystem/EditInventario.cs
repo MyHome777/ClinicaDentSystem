@@ -1,190 +1,268 @@
-﻿using DAO;
+using DAO;
 using MODELOS;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClinicaDentSystem
 {
-    // EditInventario: dos funciones
-    //   ① Consultar compras registradas con su detalle
-    //   ② Registrar ajuste manual de stock (ENTRADA o SALIDA)
     public partial class EditInventario : Form
     {
-        private readonly CompraDAO _compraDAO = new CompraDAO();
-        private readonly DetalleCompraDAO _detDAO = new DetalleCompraDAO();
-        private readonly MovimientoStockDAO _movDAO = new MovimientoStockDAO();
+        private readonly CategoriasDAO _catDAO = new CategoriasDAO();
+        private readonly ProveedoresDAO _provDAO = new ProveedoresDAO();
+        private readonly ProductoDAO _productoDAO = new ProductoDAO();
 
-        private List<Compra> _listaCompras = new List<Compra>();
-        private List<MovimientoStock> _listaMovimientos = new List<MovimientoStock>();
+        private Producto? _productoEdicion;
+        private int _productoIdActual;
+
+        public event EventHandler? InventarioGuardado;
 
         public EditInventario()
         {
             InitializeComponent();
+            ResponsiveLayout.Configure(this);
+            guna2Button2.Click += guna2Button2_Click;
+            guna2ImageButton2.Click += guna2ImageButton2_Click;
+            
         }
 
-        // ── LOAD ─────────────────────────────────────────────────────────────
+        public void CargarDatosEdicion(Producto producto)
+        {
+            _productoEdicion = producto;
+            _productoIdActual = producto.ProductoID;
+
+            if (IsHandleCreated)
+            {
+                CargarProductoEnFormulario();
+            }
+        }
+
         private void EditInventario_Load(object sender, EventArgs e)
         {
-            CargarFiltroTipo();
-            CargarCompras();
-            CargarMovimientos();
-            guna2DateTimePicker1.Value = DateTime.Now;
-        }
+            CargarCategorias();
+            CargarEstado();
 
-        // ── FILTRO TIPO MOVIMIENTO (guna2ComboBox1) ───────────────────────────
-        private void CargarFiltroTipo()
-        {
-            // guna2ComboBox1 = filtro historial de movimientos
-            guna2ComboBox1.Items.Clear();
-            guna2ComboBox1.Items.Add("TODOS");
-            guna2ComboBox1.Items.Add("ENTRADA");
-            guna2ComboBox1.Items.Add("SALIDA");
-            guna2ComboBox1.SelectedIndex = 0;
+            guna2TextBox2.ReadOnly = true;
+            guna2Button2.Text = "  ACTUALIZAR";
 
-            // guna2ComboBox3 = tipo para ajuste manual (Categoría reutilizado)
-            guna2ComboBox3.Items.Clear();
-            guna2ComboBox3.Items.Add("ENTRADA");
-            guna2ComboBox3.Items.Add("SALIDA");
-            guna2ComboBox3.SelectedIndex = 0;
-        }
-
-        // ── CARGAR COMPRAS ────────────────────────────────────────────────────
-        private void CargarCompras()
-        {
-            // SP: spSelectCompras
-            string pError;
-            _listaCompras = _compraDAO.ObtenerTodos(out pError);
-
-            if (!string.IsNullOrEmpty(pError) && pError.ToLower().Contains("error"))
-                MessageBox.Show("Error al cargar compras: " + pError, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        // ── CARGAR MOVIMIENTOS ────────────────────────────────────────────────
-        private void CargarMovimientos()
-        {
-            // SP: spSelectMovimientos
-            string pError;
-            _listaMovimientos = _movDAO.ObtenerTodos(out pError);
-
-            if (!string.IsNullOrEmpty(pError) && pError.ToLower().Contains("error"))
-                MessageBox.Show("Error al cargar movimientos: " + pError, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        // ── BUSCAR compra (guna2ImageButton6) ─────────────────────────────────
-        private void guna2ImageButton6_Click(object sender, EventArgs e)
-        {
-            string busqueda = guna2TextBox2.Text.Trim().ToUpper();
-
-            if (string.IsNullOrEmpty(busqueda))
+            if (_productoEdicion != null)
             {
-                CargarCompras();
+                CargarProductoEnFormulario();
+            }
+        }
+
+        private void CargarCategorias()
+        {
+            List<Categorias> categorias = _catDAO.ObtenerTodos(out string pError);
+
+            if (!string.IsNullOrWhiteSpace(pError))
+            {
+                MessageBox.Show("Error al cargar categorias: " + pError, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Filtrar lista en memoria
-            List<Compra> filtradas = _listaCompras.FindAll(c =>
-                c.CompraID.ToString().Contains(busqueda) ||
-                c.NombreProveedor.ToUpper().Contains(busqueda));
-
-            // Si hay un DataGridView para compras en el designer asignar aqui:
-            // dgvCompras.DataSource = filtradas;
+            guna2ComboBox3.DisplayMember = "Nombre";
+            guna2ComboBox3.ValueMember = "CategoriaID";
+            guna2ComboBox3.DataSource = categorias;
+            guna2ComboBox3.SelectedIndex = -1;
         }
 
-        // ── FILTRAR por tipo de movimiento (guna2ComboBox1) ───────────────────
-        private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void CargarEstado()
         {
-            if (guna2ComboBox1.SelectedItem == null) return;
-            string filtro = guna2ComboBox1.SelectedItem.ToString();
+            DataTable estados = _provDAO.ObtenerEstados(out string pError);
 
-            List<MovimientoStock> filtrados = filtro == "TODOS"
-                ? _listaMovimientos
-                : _listaMovimientos.FindAll(m => m.TipoMovimiento == filtro);
-
-            // Si hay DataGridView para movimientos en el designer asignar aqui:
-            // dgvMovimientos.DataSource = filtrados;
-        }
-
-        // ── GUARDAR AJUSTE MANUAL (guna2Button2) ──────────────────────────────
-        // guna2TextBox2  = ID Producto  (label3)
-        // guna2TextBox3  = Cantidad     (label4 = Stock Actual reutilizado)
-        // guna2TextBox6  = Descripción  (label2)
-        // guna2ComboBox3 = ENTRADA/SALIDA
-        private void guna2Button2_Click(object sender, EventArgs e)
-        {
-            if (!CamposAjusteValidos()) return;
-
-            MovimientoStock mov = new MovimientoStock();
-            mov.ProductoID = Convert.ToInt32(guna2TextBox2.Text);
-            mov.TipoMovimiento = guna2ComboBox3.SelectedItem?.ToString() ?? "ENTRADA";
-            mov.Cantidad = Convert.ToInt32(guna2TextBox3.Text);
-            mov.Descripcion = guna2TextBox6.Text.Trim();
-            mov.UsuarioID = Program.UsuarioActivo?.UsuarioId ?? Program.UsuarioActivo?.IdEmpleado ?? 0;
-            if (mov.UsuarioID <= 0)
+            if (!string.IsNullOrWhiteSpace(pError))
             {
-                MessageBox.Show("No se pudo obtener el usuario activo. Vuelve a iniciar sesión.", "Aviso",
+                MessageBox.Show("Error al cargar estados: " + pError, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            guna2ComboBox1.DisplayMember = "Estado";
+            guna2ComboBox1.ValueMember = "EstadoID";
+            guna2ComboBox1.DataSource = estados;
+            guna2ComboBox1.SelectedIndex = estados.Rows.Count > 0 ? 0 : -1;
+        }
+
+        private void CargarProductoEnFormulario()
+        {
+            if (_productoEdicion == null)
+            {
+                return;
+            }
+
+            guna2TextBox2.Text = _productoEdicion.ProductoID.ToString();
+            guna2TextBox7.Text = _productoEdicion.NombreProducto;
+            guna2TextBox6.Text = _productoEdicion.Descripcion;
+            guna2TextBox1.Text = _productoEdicion.UnidadMedida;
+            guna2TextBox3.Text = _productoEdicion.StockActual.ToString();
+            guna2TextBox4.Text = _productoEdicion.StockMinimo.ToString();
+            guna2TextBox5.Text = _productoEdicion.PrecioUnitario.ToString("0.00", CultureInfo.CurrentCulture);
+            guna2DateTimePicker1.Value = _productoEdicion.FechaVencimiento;
+
+            if (guna2ComboBox3.DataSource != null)
+            {
+                guna2ComboBox3.SelectedValue = _productoEdicion.CategoriaID;
+            }
+
+            if (guna2ComboBox1.DataSource != null)
+            {
+                guna2ComboBox1.SelectedValue = _productoEdicion.EstadoID;
+            }
+        }
+
+        private void guna2Button2_Click(object? sender, EventArgs e)
+        {
+            if (!CamposValidos())
+            {
+                return;
+            }
+
+            Producto producto = new Producto
+            {
+                ProductoID = _productoIdActual,
+                CategoriaID = Convert.ToInt32(guna2ComboBox3.SelectedValue),
+                NombreProducto = guna2TextBox7.Text.Trim(),
+                Descripcion = guna2TextBox6.Text.Trim(),
+                UnidadMedida = guna2TextBox1.Text.Trim(),
+                StockActual = Convert.ToInt32(guna2TextBox3.Text),
+                StockMinimo = Convert.ToInt32(guna2TextBox4.Text),
+                PrecioUnitario = LeerDecimal(guna2TextBox5.Text),
+                FechaVencimiento = guna2DateTimePicker1.Value,
+                EstadoID = Convert.ToInt32(guna2ComboBox1.SelectedValue)
+            };
+
+            _productoDAO.ActualizarRegistro(producto, out string pError);
+
+            if (!string.IsNullOrWhiteSpace(pError) && !pError.ToLowerInvariant().Contains("correctamente"))
+            {
+                MessageBox.Show("Error al actualizar producto: " + pError, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show("Producto actualizado correctamente.", "Exito",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            InventarioGuardado?.Invoke(this, EventArgs.Empty);
+            Close();
+        }
+
+        private void guna2ImageButton2_Click(object? sender, EventArgs e)
+        {
+            CargarProductoEnFormulario();
+        }
+
+        private void guna2ImageButton6_Click(object? sender, EventArgs e)
+        {
+            if (!int.TryParse(guna2TextBox2.Text, out int productoID))
+            {
+                MessageBox.Show("Ingresa un ID de producto valido.", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // SP: spInsertMovimiento — valida stock si es SALIDA
-            string pError;
-            _movDAO.GuardarRegistro(mov, out pError);
-
-            if (pError.ToLower().Contains("correctamente") || string.IsNullOrEmpty(pError))
+            List<Producto> productos = _productoDAO.ObtenerTodos(out string pError);
+            if (!string.IsNullOrWhiteSpace(pError))
             {
-                MessageBox.Show("Ajuste registrado correctamente.", "Éxito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarAjuste();
-                CargarMovimientos();
+                MessageBox.Show("Error al buscar producto: " + pError, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            Producto? producto = productos.FirstOrDefault(p => p.ProductoID == productoID);
+            if (producto == null)
             {
-                MessageBox.Show(pError, "Aviso",
+                MessageBox.Show("No se encontro el producto indicado.", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            _productoEdicion = producto;
+            _productoIdActual = producto.ProductoID;
+            CargarProductoEnFormulario();
         }
 
-        // ── LIMPIAR (guna2ImageButton2) ───────────────────────────────────────
-        private void guna2ImageButton2_Click(object sender, EventArgs e)
+        private bool CamposValidos()
         {
-            LimpiarAjuste();
-        }
+            if (_productoIdActual <= 0)
+            {
+                MessageBox.Show("Selecciona un producto valido para actualizar.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
-        private void LimpiarAjuste()
-        {
-            guna2TextBox1.Clear();
-            guna2TextBox2.Clear();
-            guna2TextBox3.Clear();
-            guna2TextBox4.Clear();
-            guna2TextBox5.Clear();
-            guna2TextBox6.Clear();
-            guna2TextBox7.Clear();
-            guna2ComboBox3.SelectedIndex = 0;
-            guna2DateTimePicker1.Value = DateTime.Now;
-        }
+            if (guna2ComboBox3.SelectedValue == null)
+            {
+                MessageBox.Show("Selecciona una categoria.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
-        // ── VALIDACIONES ──────────────────────────────────────────────────────
-        private bool CamposAjusteValidos()
-        {
-            if (string.IsNullOrWhiteSpace(guna2TextBox2.Text) || !int.TryParse(guna2TextBox2.Text, out _))
-            { MessageBox.Show("Ingresa el ID del producto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); return false; }
+            if (string.IsNullOrWhiteSpace(guna2TextBox7.Text))
+            {
+                MessageBox.Show("Ingresa el nombre del producto.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
-            if (string.IsNullOrWhiteSpace(guna2TextBox3.Text) || !int.TryParse(guna2TextBox3.Text, out _))
-            { MessageBox.Show("Ingresa una cantidad válida.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); return false; }
+            if (string.IsNullOrWhiteSpace(guna2TextBox1.Text))
+            {
+                MessageBox.Show("Ingresa la unidad de medida.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
-            if (string.IsNullOrWhiteSpace(guna2TextBox6.Text))
-            { MessageBox.Show("Ingresa una descripción del ajuste.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); return false; }
+            if (!int.TryParse(guna2TextBox3.Text, out _))
+            {
+                MessageBox.Show("Ingresa un stock actual valido.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!int.TryParse(guna2TextBox4.Text, out _))
+            {
+                MessageBox.Show("Ingresa un stock minimo valido.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!DecimalValido(guna2TextBox5.Text))
+            {
+                MessageBox.Show("Ingresa un precio unitario valido.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (guna2ComboBox1.SelectedValue == null)
+            {
+                MessageBox.Show("Selecciona un estado.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
             return true;
+        }
+
+        private static bool DecimalValido(string texto)
+        {
+            return decimal.TryParse(texto, NumberStyles.Any, CultureInfo.CurrentCulture, out _)
+                || decimal.TryParse(texto, NumberStyles.Any, CultureInfo.InvariantCulture, out _);
+        }
+
+        private static decimal LeerDecimal(string texto)
+        {
+            if (decimal.TryParse(texto, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal valor))
+            {
+                return valor;
+            }
+
+            decimal.TryParse(texto, NumberStyles.Any, CultureInfo.InvariantCulture, out valor);
+            return valor;
         }
     }
 }
