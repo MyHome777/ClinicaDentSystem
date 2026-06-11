@@ -82,7 +82,28 @@ namespace ClinicaDentSystem
             }
 
             Program.UsuarioActivo = usuario;
+            CargarPermisos(usuario);
             return true;
+        }
+
+        private void CargarPermisos(Usuario usuario)
+        {
+            PermisosDAO permisosDAO = new PermisosDAO();
+            usuario.PermisosModulos = permisosDAO.ObtenerCodigosPermitidos(usuario.UsuarioId, out string msjError);
+
+            if (usuario.EsAdministrador)
+            {
+                usuario.PermisosModulos = new HashSet<string>(ModulosSistema.Todos, StringComparer.OrdinalIgnoreCase);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(msjError))
+            {
+                MessageBox.Show("No se pudieron cargar los permisos del usuario. Ejecute primero el script de permisos.",
+                                "Permisos",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+            }
         }
 
         private void Login_Load(object sender, EventArgs e)

@@ -19,5 +19,25 @@ namespace Modelos
         public int IdEmpleado { get => _idEmpleado; set => _idEmpleado = value; }
         public string Clave { get => _clave; set => _clave = value; }
         public string NombreRol { get => _nombreRol; set => _nombreRol = value; }
+        public HashSet<string> PermisosModulos { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+        public bool EsAdministrador
+        {
+            get
+            {
+                string rol = NombreRol?.Trim() ?? string.Empty;
+                return string.Equals(rol, "Administrador", StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(rol, "Admin", StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
+        public bool TienePermiso(string codigoModulo)
+        {
+            if (string.IsNullOrWhiteSpace(codigoModulo))
+            {
+                return false;
+            }
+
+            return EsAdministrador || PermisosModulos.Contains(codigoModulo);
+        }
     }
 }

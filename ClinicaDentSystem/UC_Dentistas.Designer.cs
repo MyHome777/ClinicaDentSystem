@@ -35,9 +35,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             dataGridView1 = new DataGridView();
             txtBuscar = new Guna.UI2.WinForms.Guna2TextBox();
@@ -45,8 +42,6 @@
             guna2ImageButton3 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2ImageButton2 = new Guna.UI2.WinForms.Guna2ImageButton();
-            guna2ImageButton5 = new Guna.UI2.WinForms.Guna2ImageButton();
-            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -166,51 +161,11 @@
             guna2ImageButton2.TabIndex = 14;
             guna2ImageButton2.Click += guna2ImageButton2_Click;
             // 
-            // guna2ImageButton5
-            // 
-            guna2ImageButton5.BackColor = Color.Transparent;
-            guna2ImageButton5.CheckedState.ImageSize = new Size(64, 64);
-            guna2ImageButton5.HoverState.ImageSize = new Size(25, 25);
-            guna2ImageButton5.Image = (Image)resources.GetObject("guna2ImageButton5.Image");
-            guna2ImageButton5.ImageOffset = new Point(0, 0);
-            guna2ImageButton5.ImageRotate = 0F;
-            guna2ImageButton5.ImageSize = new Size(24, 24);
-            guna2ImageButton5.Location = new Point(189, 175);
-            guna2ImageButton5.Name = "guna2ImageButton5";
-            guna2ImageButton5.PressedState.ImageSize = new Size(64, 64);
-            guna2ImageButton5.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            guna2ImageButton5.Size = new Size(42, 42);
-            guna2ImageButton5.TabIndex = 17;
-            guna2ImageButton5.UseTransparentBackground = true;
-            // 
-            // guna2Button2
-            // 
-            guna2Button2.BorderColor = Color.FromArgb(30, 111, 217);
-            guna2Button2.BorderRadius = 20;
-            guna2Button2.BorderThickness = 2;
-            guna2Button2.CustomizableEdges = customizableEdges8;
-            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.FillColor = SystemColors.ButtonHighlight;
-            guna2Button2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button2.ForeColor = Color.FromArgb(30, 111, 217);
-            guna2Button2.Location = new Point(63, 175);
-            guna2Button2.Name = "guna2Button2";
-            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges9;
-            guna2Button2.Size = new Size(180, 45);
-            guna2Button2.TabIndex = 16;
-            guna2Button2.Text = "  VER MAS DATOS";
-            guna2Button2.TextAlign = HorizontalAlignment.Left;
-            // 
             // UC_Dentistas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            Controls.Add(guna2ImageButton5);
-            Controls.Add(guna2Button2);
             Controls.Add(guna2ImageButton2);
             Controls.Add(guna2ImageButton1);
             Controls.Add(guna2ImageButton3);
@@ -235,7 +190,5 @@
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton3;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton1;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton2;
-        private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton5;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
     }
 }

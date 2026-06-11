@@ -11,6 +11,7 @@ namespace ClinicaDentSystem
     public partial class UC_Facturacion : UserControl
     {
         private readonly FacturacionDAO _facturacionDAO = new FacturacionDAO();
+        private readonly CorreoFacturaService _correoFacturaService = new CorreoFacturaService();
         private readonly BindingList<FacturaDetalle> _detalles = new BindingList<FacturaDetalle>();
         private decimal _porcentajeDescuento;
         private int? _descuentoServicioID;
@@ -425,10 +426,15 @@ namespace ClinicaDentSystem
                 return;
             }
 
-            MessageBox.Show($"Factura #{facturaID} emitida correctamente.",
+            bool correoEnviado = _correoFacturaService.EnviarFactura(facturaID, out string mensajeCorreo);
+            string mensajeFinal = correoEnviado
+                ? $"Factura #{facturaID} emitida correctamente.\n{mensajeCorreo}"
+                : $"Factura #{facturaID} emitida correctamente, pero no se pudo enviar por correo.\n{mensajeCorreo}";
+
+            MessageBox.Show(mensajeFinal,
                             "Facturacion",
                             MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                            correoEnviado ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
 
             LimpiarFactura();
             CargarCitas();
@@ -542,6 +548,11 @@ namespace ClinicaDentSystem
         {
             ReporteIngresos reporteingresos = new ReporteIngresos();
             reporteingresos.ShowDialog();
+        }
+
+        private void guna2ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

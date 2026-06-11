@@ -21,12 +21,15 @@ namespace ClinicaDentSystem
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblTitulo = new Label();
             dgvDetalle = new DataGridView();
             panelInferior = new Panel();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             lblTotal = new Label();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            btnEnviarCorreo = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)dgvDetalle).BeginInit();
             panelInferior.SuspendLayout();
             SuspendLayout();
@@ -64,6 +67,7 @@ namespace ClinicaDentSystem
             // 
             // panelInferior
             // 
+            panelInferior.Controls.Add(btnEnviarCorreo);
             panelInferior.Controls.Add(guna2Button2);
             panelInferior.Controls.Add(guna2Button1);
             panelInferior.Controls.Add(lblTotal);
@@ -99,9 +103,9 @@ namespace ClinicaDentSystem
             lblTotal.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblTotal.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblTotal.ForeColor = Color.FromArgb(30, 111, 217);
-            lblTotal.Location = new Point(12, 13);
+            lblTotal.Location = new Point(365, 13);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(637, 24);
+            lblTotal.Size = new Size(314, 24);
             lblTotal.TabIndex = 0;
             lblTotal.Text = "Total detalle: $0.00";
             lblTotal.TextAlign = ContentAlignment.MiddleRight;
@@ -125,6 +129,26 @@ namespace ClinicaDentSystem
             guna2Button2.Size = new Size(198, 45);
             guna2Button2.TabIndex = 48;
             guna2Button2.Text = "MARCAR COMO PAGADA";
+            // 
+            // btnEnviarCorreo
+            // 
+            btnEnviarCorreo.BorderColor = Color.FromArgb(30, 111, 217);
+            btnEnviarCorreo.BorderRadius = 20;
+            btnEnviarCorreo.BorderThickness = 2;
+            btnEnviarCorreo.CustomizableEdges = customizableEdges5;
+            btnEnviarCorreo.DisabledState.BorderColor = Color.DarkGray;
+            btnEnviarCorreo.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnEnviarCorreo.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnEnviarCorreo.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnEnviarCorreo.FillColor = SystemColors.ButtonHighlight;
+            btnEnviarCorreo.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEnviarCorreo.ForeColor = Color.FromArgb(30, 111, 217);
+            btnEnviarCorreo.Location = new Point(204, 3);
+            btnEnviarCorreo.Name = "btnEnviarCorreo";
+            btnEnviarCorreo.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnEnviarCorreo.Size = new Size(154, 45);
+            btnEnviarCorreo.TabIndex = 49;
+            btnEnviarCorreo.Text = "ENVIAR CORREO";
             // 
             // DetalleFactura
             // 
@@ -152,5 +176,6 @@ namespace ClinicaDentSystem
         private Label lblTotal;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button btnEnviarCorreo;
     }
 }

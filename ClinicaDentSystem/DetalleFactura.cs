@@ -7,16 +7,19 @@ namespace ClinicaDentSystem
     public partial class DetalleFactura : Form
     {
         private readonly FacturacionDAO _facturacionDAO = new FacturacionDAO();
+        private readonly CorreoFacturaService _correoFacturaService = new CorreoFacturaService();
         private DataTable _detalle = new DataTable();
         private int _facturaID;
         private string _estado = string.Empty;
         private string _tituloDetalle = "Detalle de factura";
+        private bool _permiteEnvioCorreo = true;
 
         public DetalleFactura()
         {
             InitializeComponent();
             ConfigurarGrid();
             guna2Button2.Click += btnMarcarComoPagada_Click;
+            btnEnviarCorreo.Click += btnEnviarCorreo_Click;
         }
 
         public DetalleFactura(int facturaID, DataTable detalle) : this()
@@ -32,6 +35,7 @@ namespace ClinicaDentSystem
         public DetalleFactura(int facturaID, DataTable detalle, string estado, string tituloDetalle) : this()
         {
             _tituloDetalle = string.IsNullOrWhiteSpace(tituloDetalle) ? _tituloDetalle : tituloDetalle;
+            _permiteEnvioCorreo = false;
             CargarDetalle(facturaID, detalle, estado);
         }
 
@@ -49,6 +53,7 @@ namespace ClinicaDentSystem
             dgvDetalle.DataSource = _detalle;
             lblTotal.Text = $"Total detalle: {FormatearMoneda(CalcularTotalDetalle(_detalle))}";
             ActualizarBotonPago();
+            ActualizarBotonCorreo();
         }
 
         private void ConfigurarGrid()
@@ -141,6 +146,12 @@ namespace ClinicaDentSystem
             guna2Button2.Enabled = puedeMarcarPagada;
         }
 
+        private void ActualizarBotonCorreo()
+        {
+            btnEnviarCorreo.Visible = _permiteEnvioCorreo && _facturaID > 0;
+            btnEnviarCorreo.Enabled = btnEnviarCorreo.Visible;
+        }
+
         private void btnMarcarComoPagada_Click(object? sender, EventArgs e)
         {
             if (!_estado.Equals("EMITIDA", StringComparison.OrdinalIgnoreCase))
@@ -182,6 +193,32 @@ namespace ClinicaDentSystem
             ActualizarBotonPago();
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void btnEnviarCorreo_Click(object? sender, EventArgs e)
+        {
+            if (_facturaID <= 0)
+            {
+                MessageBox.Show("No se encontro la factura para enviar.",
+                                "Detalle de factura",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
+            btnEnviarCorreo.Enabled = false;
+            try
+            {
+                bool enviado = _correoFacturaService.EnviarFactura(_facturaID, out string mensaje);
+                MessageBox.Show(mensaje,
+                                enviado ? "Correo enviado" : "Error al enviar correo",
+                                MessageBoxButtons.OK,
+                                enviado ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                btnEnviarCorreo.Enabled = true;
+            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

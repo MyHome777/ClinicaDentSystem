@@ -126,6 +126,14 @@ namespace DAO
                 new SqlParameter("@FacturaID", SqlDbType.Int) { Value = facturaID });
         }
 
+        public DataTable ObtenerFacturaParaCorreo(int facturaID, out string pError)
+        {
+            return EjecutarTablaSP(
+                "dbo.spObtenerFacturaParaCorreo",
+                out pError,
+                new SqlParameter("@FacturaID", SqlDbType.Int) { Value = facturaID });
+        }
+
         public bool AnularFactura(int facturaID, int usuarioID, out string pError)
         {
             pError = string.Empty;
