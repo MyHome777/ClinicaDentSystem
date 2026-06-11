@@ -110,6 +110,7 @@
             txt_pass.Size = new Size(236, 36);
             txt_pass.TabIndex = 2;
             txt_pass.TextChanged += guna2TextBox2_TextChanged;
+            txt_pass.UseSystemPasswordChar = true;
             // 
             // label3
             // 
