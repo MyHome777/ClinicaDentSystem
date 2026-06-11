@@ -1,22 +1,18 @@
-﻿using Microsoft.Data.SqlClient;
+using DAO;
+using Modelos;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Mail;
 using System.Windows.Forms;
 
 namespace ClinicaDentSystem
 {
     public partial class Usuarios : Form
     {
-        public event EventHandler UsuarioGuardado;
-        public int UsuarioID = 0;
+        private readonly UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        string cadena = @"Data Source=.\SQLEXPRESS;Initial Catalog=CLINICADENTAL;Integrated Security=True;TrustServerCertificate=True";
+        public event EventHandler? UsuarioGuardado;
+        public int UsuarioID = 0;
 
         public Usuarios()
         {
@@ -27,6 +23,7 @@ namespace ClinicaDentSystem
         {
             CargarComboRoles();
             CargarComboEstados();
+
             if (UsuarioID > 0)
             {
                 CargarDatosParaEditar();
@@ -35,91 +32,199 @@ namespace ClinicaDentSystem
 
         private void CargarComboRoles()
         {
-            try
+            DataTable roles = usuarioDAO.ObtenerRoles(out string error);
+            if (!string.IsNullOrEmpty(error))
             {
-                using (SqlConnection con = new SqlConnection(cadena))
-                {
-                    SqlDataAdapter da = new SqlDataAdapter("SELECT RolID, NombreRol FROM SEGURIDAD.ROL", con);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    cmbRol.DataSource = dt;
-                    cmbRol.DisplayMember = "NombreRol";
-                    cmbRol.ValueMember = "RolID";
-                }
+                MessageBox.Show("Error roles: " + error, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            catch (Exception ex) { MessageBox.Show("Error roles: " + ex.Message); }
+
+            cmbRol.DataSource = roles;
+            cmbRol.DisplayMember = "NombreRol";
+            cmbRol.ValueMember = "RolID";
         }
 
         private void CargarComboEstados()
         {
-            try
+            DataTable estados = usuarioDAO.ObtenerEstados(out string error);
+            if (!string.IsNullOrEmpty(error))
             {
-                using (SqlConnection con = new SqlConnection(cadena))
+                MessageBox.Show("Error estados: " + error, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            cmbEstado.DataSource = estados;
+            cmbEstado.DisplayMember = "Estado";
+            cmbEstado.ValueMember = "EstadoId";
+            SeleccionarEstadoActivo();
+        }
+
+        private void SeleccionarEstadoActivo()
+        {
+            foreach (DataRowView item in cmbEstado.Items)
+            {
+                string estado = item["Estado"]?.ToString() ?? string.Empty;
+                if (string.Equals(estado, "ACTIVO", StringComparison.OrdinalIgnoreCase))
                 {
-                    SqlDataAdapter da = new SqlDataAdapter("SELECT EstadoId, Estado FROM SEGURIDAD.ESTADO", con);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    cmbEstado.DataSource = dt;
-                    cmbEstado.DisplayMember = "Estado";
-                    cmbEstado.ValueMember = "EstadoId";
+                    cmbEstado.SelectedValue = item["EstadoId"];
+                    return;
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Error estados: " + ex.Message); }
         }
 
         private void CargarDatosParaEditar()
         {
-            try
+            Usuario usuario = usuarioDAO.ObtenerPorId(UsuarioID, out string error);
+            if (!string.IsNullOrEmpty(error))
             {
-                using (SqlConnection con = new SqlConnection(cadena))
-                {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM SEGURIDAD.USUARIO WHERE UsuarioID = @ID", con);
-                    cmd.Parameters.AddWithValue("@ID", UsuarioID);
-                    con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    if (dr.Read())
-                    {
-                        txtNombreUsuario.Text = dr["NombreUsuario"].ToString();
-                        txtNombreEmpleado.Text = dr["NombreEmpleado"].ToString();
-                        txtClave.Text = dr["Clave"].ToString();
-                        txtEmail.Text = dr["Email"].ToString();
-                        cmbRol.SelectedValue = dr["RolID"];
-                        cmbEstado.SelectedValue = dr["EstadoID"];
-                    }
-                }
+                MessageBox.Show("Error al cargar datos: " + error, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+                return;
             }
-            catch (Exception ex) { MessageBox.Show("Error al cargar datos: " + ex.Message); }
+
+            txtNombreUsuario.Text = usuario.NombreUsuario;
+            txtNombreEmpleado.Text = usuario.NombreEmpleado;
+            txtClave.Text = usuario.Clave;
+            txtEmail.Text = usuario.Email;
+            cmbRol.SelectedValue = usuario.RolID;
+            cmbEstado.SelectedValue = usuario.EstadoID;
         }
 
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
-            try
+            if (!ValidarFormulario())
             {
-                using (SqlConnection con = new SqlConnection(cadena))
+                return;
+            }
+
+            Usuario usuario = CrearUsuarioDesdeFormulario();
+
+            if (UsuarioID == 0)
+            {
+                usuarioDAO.GuardarRegistro(usuario, out string errorGuardar);
+                if (!string.IsNullOrEmpty(errorGuardar))
                 {
-                    con.Open();
-                    string sp = (UsuarioID == 0) ? "SEGURIDAD.SpInsertarUsuario" : "SEGURIDAD.SpActualizarUsuario";
-                    SqlCommand cmd = new SqlCommand(sp, con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    if (UsuarioID > 0) cmd.Parameters.AddWithValue("@UsuarioID", UsuarioID);
-
-                    cmd.Parameters.AddWithValue("@NombreUsuario", txtNombreUsuario.Text);
-                    cmd.Parameters.AddWithValue("@NombreEmpleado", txtNombreEmpleado.Text);
-                    cmd.Parameters.AddWithValue("@Clave", txtClave.Text);
-                    cmd.Parameters.AddWithValue("@RolID", cmbRol.SelectedValue);
-                    cmd.Parameters.AddWithValue("@EstadoID", cmbEstado.SelectedValue);
-                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@Estado", cmbEstado.Text);
-
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Guardado con éxito.");
-
-                    UsuarioGuardado?.Invoke(this, EventArgs.Empty);
-                    this.Close();
+                    MessageBox.Show("Error: " + errorGuardar, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+            else
+            {
+                usuarioDAO.ActualizarRegistro(usuario, out string errorActualizar);
+                if (!string.IsNullOrEmpty(errorActualizar))
+                {
+                    MessageBox.Show("Error: " + errorActualizar, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            MessageBox.Show("Guardado con exito.", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            UsuarioGuardado?.Invoke(this, EventArgs.Empty);
+            Close();
+        }
+
+        private Usuario CrearUsuarioDesdeFormulario()
+        {
+            return new Usuario
+            {
+                UsuarioId = UsuarioID,
+                NombreUsuario = txtNombreUsuario.Text.Trim(),
+                NombreEmpleado = txtNombreEmpleado.Text.Trim(),
+                Clave = txtClave.Text.Trim(),
+                RolID = Convert.ToInt32(cmbRol.SelectedValue),
+                EstadoID = Convert.ToInt32(cmbEstado.SelectedValue),
+                Email = txtEmail.Text.Trim(),
+                Estado = cmbEstado.Text.Trim()
+            };
+        }
+
+        private bool ValidarFormulario()
+        {
+            txtNombreUsuario.Text = txtNombreUsuario.Text.Trim();
+            txtNombreEmpleado.Text = txtNombreEmpleado.Text.Trim();
+            txtClave.Text = txtClave.Text.Trim();
+            txtEmail.Text = txtEmail.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(txtNombreUsuario.Text))
+            {
+                return MostrarValidacion("Ingresa el nombre de usuario.", txtNombreUsuario);
+            }
+
+            if (txtNombreUsuario.Text.Length > 50)
+            {
+                return MostrarValidacion("El nombre de usuario no puede superar 50 caracteres.", txtNombreUsuario);
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNombreEmpleado.Text))
+            {
+                return MostrarValidacion("Ingresa el nombre del empleado.", txtNombreEmpleado);
+            }
+
+            if (txtNombreEmpleado.Text.Length > 60)
+            {
+                return MostrarValidacion("El nombre del empleado no puede superar 60 caracteres.", txtNombreEmpleado);
+            }
+
+            if (string.IsNullOrWhiteSpace(txtClave.Text))
+            {
+                return MostrarValidacion("Ingresa la clave.", txtClave);
+            }
+
+            if (txtClave.Text.Length > 25)
+            {
+                return MostrarValidacion("La clave no puede superar 25 caracteres.", txtClave);
+            }
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                return MostrarValidacion("Ingresa el correo del usuario.", txtEmail);
+            }
+
+            if (txtEmail.Text.Length > 100)
+            {
+                return MostrarValidacion("El correo no puede superar 100 caracteres.", txtEmail);
+            }
+
+            if (!EsCorreoValido(txtEmail.Text))
+            {
+                return MostrarValidacion("Ingresa un correo valido.", txtEmail);
+            }
+
+            if (cmbRol.SelectedValue == null)
+            {
+                MessageBox.Show("Selecciona un rol.", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbRol.Focus();
+                return false;
+            }
+
+            if (cmbEstado.SelectedValue == null)
+            {
+                MessageBox.Show("Selecciona un estado.", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbEstado.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private static bool EsCorreoValido(string correo)
+        {
+            try
+            {
+                MailAddress mail = new MailAddress(correo);
+                return string.Equals(mail.Address, correo, StringComparison.OrdinalIgnoreCase);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private static bool MostrarValidacion(string mensaje, Control control)
+        {
+            MessageBox.Show(mensaje, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            control.Focus();
+            return false;
         }
     }
 }

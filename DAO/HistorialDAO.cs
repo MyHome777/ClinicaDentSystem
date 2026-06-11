@@ -32,6 +32,7 @@ namespace DAO
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
 
                 da.Fill(dt);
+                HistorialEventoFormatter.AplicarNombres(dt, con);
 
                 conexion.CerrarConexion(out error);
             }

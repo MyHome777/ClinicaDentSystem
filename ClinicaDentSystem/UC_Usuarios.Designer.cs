@@ -35,9 +35,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             txtBuscar = new Guna.UI2.WinForms.Guna2TextBox();
             btnBuscar = new Guna.UI2.WinForms.Guna2ImageButton();
@@ -45,8 +42,6 @@
             btnEditar = new Guna.UI2.WinForms.Guna2ImageButton();
             btnEliminar = new Guna.UI2.WinForms.Guna2ImageButton();
             dgvUsuarios = new DataGridView();
-            guna2ImageButton4 = new Guna.UI2.WinForms.Guna2ImageButton();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             SuspendLayout();
             // 
@@ -154,57 +149,18 @@
             // dgvUsuarios
             // 
             dgvUsuarios.BackgroundColor = SystemColors.Control;
+            dgvUsuarios.BorderStyle = BorderStyle.None;
             dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsuarios.Location = new Point(47, 226);
             dgvUsuarios.Name = "dgvUsuarios";
             dgvUsuarios.Size = new Size(1440, 543);
             dgvUsuarios.TabIndex = 15;
             // 
-            // guna2ImageButton4
-            // 
-            guna2ImageButton4.BackColor = Color.Transparent;
-            guna2ImageButton4.CheckedState.ImageSize = new Size(64, 64);
-            guna2ImageButton4.HoverState.ImageSize = new Size(25, 25);
-            guna2ImageButton4.Image = (Image)resources.GetObject("guna2ImageButton4.Image");
-            guna2ImageButton4.ImageOffset = new Point(0, 0);
-            guna2ImageButton4.ImageRotate = 0F;
-            guna2ImageButton4.ImageSize = new Size(24, 24);
-            guna2ImageButton4.Location = new Point(248, 175);
-            guna2ImageButton4.Name = "guna2ImageButton4";
-            guna2ImageButton4.PressedState.ImageSize = new Size(64, 64);
-            guna2ImageButton4.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            guna2ImageButton4.Size = new Size(46, 42);
-            guna2ImageButton4.TabIndex = 17;
-            guna2ImageButton4.UseTransparentBackground = true;
-            // 
-            // guna2Button1
-            // 
-            guna2Button1.BorderColor = Color.FromArgb(30, 111, 217);
-            guna2Button1.BorderRadius = 20;
-            guna2Button1.BorderThickness = 2;
-            guna2Button1.CustomizableEdges = customizableEdges8;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = SystemColors.ButtonHighlight;
-            guna2Button1.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button1.ForeColor = Color.FromArgb(30, 111, 217);
-            guna2Button1.Location = new Point(63, 175);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges9;
-            guna2Button1.Size = new Size(241, 45);
-            guna2Button1.TabIndex = 16;
-            guna2Button1.Text = " VER DETALLES DEL USUARIO";
-            guna2Button1.TextAlign = HorizontalAlignment.Left;
-            // 
             // UC_Usuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            Controls.Add(guna2ImageButton4);
-            Controls.Add(guna2Button1);
             Controls.Add(dgvUsuarios);
             Controls.Add(btnEliminar);
             Controls.Add(btnEditar);
@@ -228,7 +184,5 @@
         private Guna.UI2.WinForms.Guna2ImageButton btnEditar;
         private Guna.UI2.WinForms.Guna2ImageButton btnEliminar;
         private DataGridView dgvUsuarios;
-        private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

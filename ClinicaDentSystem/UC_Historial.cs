@@ -1,13 +1,8 @@
+using DAO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DAO;
 
 namespace ClinicaDentSystem
 {
@@ -17,8 +12,27 @@ namespace ClinicaDentSystem
         {
             InitializeComponent();
             ResponsiveLayout.Configure(this);
-
+            ConfigurarGrid();
             CargarHistorial();
+        }
+
+        private void ConfigurarGrid()
+        {
+            dataGridView1.ReadOnly = true;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = SystemColors.ButtonHighlight;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 111, 217);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 111, 217);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
         }
 
         private void CargarHistorial()
@@ -26,28 +40,73 @@ namespace ClinicaDentSystem
             HistorialDAO dao = new HistorialDAO();
 
             dataGridView1.DataSource = dao.Listar();
+            ConfigurarColumnas();
+        }
 
-            dataGridView1.Columns["historialId"].Visible = false;
-            dataGridView1.Columns["tabla"].Visible = false;
+        private void ConfigurarColumnas()
+        {
+            if (dataGridView1.Columns.Count == 0)
+            {
+                return;
+            }
 
-            dataGridView1.Columns["fecha"].HeaderText = "Fecha";
+            OcultarColumna("historialId");
+            OcultarColumna("tabla");
 
-            dataGridView1.Columns["evento"].HeaderText = "Evento";
-            dataGridView1.Columns["NombreUsuario"].HeaderText = "Usuario";
+            if (dataGridView1.Columns.Contains("fecha"))
+            {
+                dataGridView1.Columns["fecha"].HeaderText = "Fecha";
+                dataGridView1.Columns["fecha"].FillWeight = 18;
+                dataGridView1.Columns["fecha"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+            }
 
-            dataGridView1.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.Fill;
+            if (dataGridView1.Columns.Contains("evento"))
+            {
+                dataGridView1.Columns["evento"].HeaderText = "Evento";
+                dataGridView1.Columns["evento"].FillWeight = 64;
+            }
+
+            if (dataGridView1.Columns.Contains("NombreUsuario"))
+            {
+                dataGridView1.Columns["NombreUsuario"].HeaderText = "Usuario";
+                dataGridView1.Columns["NombreUsuario"].FillWeight = 18;
+            }
+        }
+
+        private void OcultarColumna(string nombre)
+        {
+            if (dataGridView1.Columns.Contains(nombre))
+            {
+                dataGridView1.Columns[nombre].Visible = false;
+            }
         }
 
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
         {
-            DataTable dt = (DataTable)dataGridView1.DataSource;
-
-            if (dt != null)
+            if (dataGridView1.DataSource is not DataTable dt)
             {
-                dt.DefaultView.RowFilter =
-                    $"evento LIKE '%{guna2TextBox1.Text.Replace("'", "''")}%' ";
+                return;
             }
+
+            string texto = EscaparFiltro(guna2TextBox1.Text);
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                dt.DefaultView.RowFilter = string.Empty;
+                return;
+            }
+
+            dt.DefaultView.RowFilter =
+                $"Convert(evento, 'System.String') LIKE '%{texto}%' OR Convert(NombreUsuario, 'System.String') LIKE '%{texto}%'";
+        }
+
+        private static string EscaparFiltro(string texto)
+        {
+            return texto
+                .Trim()
+                .Replace("'", "''")
+                .Replace("[", "[[]")
+                .Replace("%", "[%]")
+                .Replace("*", "[*]");
         }
     }
 }
