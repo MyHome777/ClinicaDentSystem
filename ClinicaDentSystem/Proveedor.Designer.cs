@@ -120,6 +120,7 @@
             guna2ComboBox3.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2ComboBox3.Size = new Size(220, 36);
             guna2ComboBox3.TabIndex = 102;
+            guna2ComboBox3.SelectedIndexChanged += guna2ComboBox3_SelectedIndexChanged;
             // 
             // label5
             // 
