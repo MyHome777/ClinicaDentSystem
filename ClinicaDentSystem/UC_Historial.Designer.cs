@@ -89,6 +89,7 @@
             guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges3;
             guna2TextBox1.Size = new Size(592, 36);
             guna2TextBox1.TabIndex = 11;
+            guna2TextBox1.TextChanged += guna2TextBox1_TextChanged;
             // 
             // dataGridView1
             // 
